@@ -113,6 +113,19 @@ public class Flight {
     public void setFlightNumber(String flightNumber) {
         this.flightNumber = flightNumber;
     }
+    
+    @Override
+    public String toString() {
+        return "Flight Number: '" + flightNumber + '\'' +
+                ", From: '" + from + '\'' +
+                ", To: '" + to + '\'' +
+                ", Date: " + date +
+                ", Time: " + time +
+                ", Economy Seats Available: " + economySeatsAvailable +
+                ", First Class Seats Available: " + firstClassSeatsAvailable +
+                ", Economy Price: " + economyPrice +
+                ", First Class Price: " + firstClassPrice;
+    }
 
 }
 
