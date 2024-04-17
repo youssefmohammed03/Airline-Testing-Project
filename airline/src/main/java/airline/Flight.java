@@ -15,6 +15,7 @@ public class Flight {
     private LocalTime time;
     private LocalDate date;
     private String flightNumber;
+    public List<Ticket> tickets = new ArrayList<>();
     
     public static List<Flight> flights = new ArrayList<>();
     
@@ -113,6 +114,15 @@ public class Flight {
     public void setFlightNumber(String flightNumber) {
         this.flightNumber = flightNumber;
     }
+    
+    /*public static Ticket searchTicket(int ticketId) {
+	    for (Ticket ticket : tickets) {
+	        if (ticket.getTicketId() == ticketId) {
+	            return ticket;
+	        }
+	    }
+	    return null;
+	}*/
     
     @Override
     public String toString() {
