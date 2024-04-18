@@ -14,12 +14,12 @@ public class Flight {
     private double firstClassPrice;
     private LocalTime time;
     private LocalDate date;
-    private String flightNumber;
+    private String flightId;
     public List<Ticket> tickets = new ArrayList<>();
     
     public static List<Flight> flights = new ArrayList<>();
     
-    public static List<Flight> flightSearch(String from, String to, LocalDate date) {
+    public static List<Flight> searchFlight(String from, String to, LocalDate date) {
         List<Flight> matchingFlights = new ArrayList<>();
         for (Flight flight : flights) {
             if (flight.getFrom().equalsIgnoreCase(from) &&
@@ -31,6 +31,40 @@ public class Flight {
         }
         return matchingFlights;
     }
+    
+    public static Flight searchFlightById(String flightId) {
+        for (Flight flight : flights) {
+            if (flight.getFlightId().equals(flightId)) {
+                return flight;
+            }
+        }
+        return null;
+    }
+    
+    private static String generateFlightNumber(Flight flight) {
+        int number = 10001;
+        if (flights.isEmpty()) {
+        	flights.add(0,flight);
+        	return String.valueOf(number);
+        } else {
+            int lastNumber = Integer.parseInt(flights.get(flights.size() - 1).getFlightId());
+            if (lastNumber == 99999) {
+                for (int i = 1; i < flights.size(); ++i) {
+                    int currentNumber = Integer.parseInt(flights.get(i).getFlightId());
+                    int previousNumber = Integer.parseInt(flights.get(i - 1).getFlightId());
+                    if (currentNumber != previousNumber + 1) {
+                    	flights.add(i,flight);
+                    	return String.valueOf(previousNumber + 1);
+                    }
+                }
+                flights.add(flight);
+                return String.valueOf(100001);
+            } else {
+            	flights.add(flight);
+            	return String.valueOf(lastNumber + 1);
+            }
+        }
+    }
 
     public Flight(int economySeatsAvailable, int firstClassSeatsAvailable, String from, String to, double economyPrice, double firstClassPrice, LocalTime time, LocalDate date) {
         this.economySeatsAvailable = economySeatsAvailable;
@@ -41,6 +75,7 @@ public class Flight {
         this.firstClassPrice = firstClassPrice;
         this.date = date;
         this.time = time;
+        this.flightId = generateFlightNumber(this);
     }
 
     public int getEconomySeatsAvailable() {
@@ -107,15 +142,13 @@ public class Flight {
         this.time = time;
     }
 
-    public String getFlightNumber() {
-        return flightNumber;
-    }
-
-    public void setFlightNumber(String flightNumber) {
-        this.flightNumber = flightNumber;
+    public String getFlightId() {
+        return flightId;
     }
     
-    /*public static Ticket searchTicket(int ticketId) {
+    
+    
+    /*public Ticket searchTicket(int ticketId) {
 	    for (Ticket ticket : tickets) {
 	        if (ticket.getTicketId() == ticketId) {
 	            return ticket;
@@ -126,7 +159,7 @@ public class Flight {
     
     @Override
     public String toString() {
-        return "Flight Number: '" + flightNumber + '\'' +
+        return "Flight Number: '" + flightId + '\'' +
                 ", From: '" + from + '\'' +
                 ", To: '" + to + '\'' +
                 ", Date: " + date +
@@ -136,6 +169,9 @@ public class Flight {
                 ", Economy Price: " + economyPrice +
                 ", First Class Price: " + firstClassPrice;
     }
+    
+    //Delete flight
+    //Ticket Search
 
 }
 
