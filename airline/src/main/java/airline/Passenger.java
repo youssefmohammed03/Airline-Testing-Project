@@ -107,4 +107,15 @@ public class Passenger extends User{
                 ", dateOfBirth=" + dateOfBirth+ '\'' +
                 " Above 18 =" + isAdult + "}";
     }
+    @Override
+    public boolean signup(String username, String password) {
+        for (User user : users) {
+            if (user.username.equals(username)) {
+                System.out.println("Username already exists. Please try again.");
+                return false;
+            }
+        }
+        User.users.add(new Passenger(username, password, name, passportNumber, email, phoneNumber, address, dateOfBirth, nationality, isAdult));
+        return true;
+    }
 }

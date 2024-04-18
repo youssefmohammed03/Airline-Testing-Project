@@ -25,11 +25,10 @@ public abstract class User {
     public boolean signup(String username, String password) {
         for (User user : users) {
             if (user.username.equals(username)) {
-                system.out.println("Username already exists. Please try again.");
+                System.out.println("Username already exists. Please try again.");
                 return false; 
             }
         }
-        users.add(new User(username, password) {});
         return true;
     }
 }
