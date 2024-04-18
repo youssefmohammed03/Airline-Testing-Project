@@ -1,3 +1,5 @@
+package airline;
+
 import java.util.List;
 
 public class Ticket {
@@ -8,7 +10,7 @@ public class Ticket {
     private double price;
 
 
-    public Ticket(Flight flight, Passenger passenger, String seatType, String status) {
+    public Ticket(Flight flight, Passenger passenger, String seatType) {
         this.flight = flight;
         this.passenger = passenger;
         this.seatType = seatType;

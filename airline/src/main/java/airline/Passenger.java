@@ -1,4 +1,8 @@
+package airline;
+
 import java.util.Date;
+
+
 
 public class Passenger {
     private String name;
