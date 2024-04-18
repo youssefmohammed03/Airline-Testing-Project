@@ -1,7 +1,7 @@
 package airline;
 
-import java.time.Date;
-import java.time.Time;
+import java.util.Date;
+import java.util.Time;
 import java.util.ArrayList;
 import java.util.List;
 
