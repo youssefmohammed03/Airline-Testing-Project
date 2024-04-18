@@ -1,7 +1,7 @@
 package airline;
 
-import java.util.Date;
-import java.util.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,14 +12,14 @@ public class Flight {
     private String to;
     private double economyPrice;
     private double firstClassPrice;
-    private Time time;
-    private Date date;
+    private LocalTime; time;
+    private LocalDate; date;
     private String flightId;
     public List<Ticket> tickets = new ArrayList<>();
     
     public static List<Flight> flights = new ArrayList<>();
     
-    public static List<Flight> searchFlight(String from, String to, Date date) {
+    public static List<Flight> searchFlight(String from, String to, LocalDate; date) {
         List<Flight> matchingFlights = new ArrayList<>();
         for (Flight flight : flights) {
             if (flight.getFrom().equalsIgnoreCase(from) &&
@@ -66,7 +66,7 @@ public class Flight {
         }
     }
 
-    public Flight(int economySeatsAvailable, int firstClassSeatsAvailable, String from, String to, double economyPrice, double firstClassPrice, Time time, Date date) {
+    public Flight(int economySeatsAvailable, int firstClassSeatsAvailable, String from, String to, double economyPrice, double firstClassPrice, LocalTime; time, LocalDate; date) {
         this.economySeatsAvailable = economySeatsAvailable;
         this.firstClassSeatsAvailable = firstClassSeatsAvailable;
         this.from = from;
@@ -126,19 +126,19 @@ public class Flight {
         this.firstClassPrice = firstClassPrice;
     }
 
-    public Date getDate() {
+    public LocalDate; getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate; date) {
         this.date = date;
     }
 
-    public Time getTime() {
+    public LocalTime; getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(LocalTime; time) {
         this.time = time;
     }
 
@@ -162,8 +162,8 @@ public class Flight {
         return "Flight Number: '" + flightId + '\'' +
                 ", From: '" + from + '\'' +
                 ", To: '" + to + '\'' +
-                ", Date: " + date +
-                ", Time: " + time +
+                ", LocalDate;: " + date +
+                ", LocalTime;: " + time +
                 ", Economy Seats Available: " + economySeatsAvailable +
                 ", First Class Seats Available: " + firstClassSeatsAvailable +
                 ", Economy Price: " + economyPrice +
