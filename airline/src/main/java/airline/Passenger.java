@@ -2,7 +2,7 @@ package airline;
 
 import java.util.LocalDate;
 
-public class Passenger {
+public class Passenger extends User{
     private String name;
     private String passportNumber;
     private String email;
@@ -13,7 +13,8 @@ public class Passenger {
     private Boolean isAdult;
     private Ticket ticket;
 
-    public Passenger(String name, String passportNumber, String email, String phoneNumber, String address, LocalDate dateOfBirth, String nationality, Boolean isAdult) {
+    public Passenger( String username, String Password, String name, String passportNumber, String email, String phoneNumber, String address, LocalDate dateOfBirth, String nationality, Boolean isAdult) {
+        super(username, Password);
         this.name = name;
         this.passportNumber = passportNumber;
         this.email = email;
