@@ -1,6 +1,6 @@
 package airline;
 
-import java.time.LocalDate;
+import java.time.Date;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +13,13 @@ public class Flight {
     private double economyPrice;
     private double firstClassPrice;
     private LocalTime time;
-    private LocalDate date;
+    private Date date;
     private String flightId;
     public List<Ticket> tickets = new ArrayList<>();
     
     public static List<Flight> flights = new ArrayList<>();
     
-    public static List<Flight> searchFlight(String from, String to, LocalDate date) {
+    public static List<Flight> searchFlight(String from, String to, Date date) {
         List<Flight> matchingFlights = new ArrayList<>();
         for (Flight flight : flights) {
             if (flight.getFrom().equalsIgnoreCase(from) &&
@@ -66,7 +66,7 @@ public class Flight {
         }
     }
 
-    public Flight(int economySeatsAvailable, int firstClassSeatsAvailable, String from, String to, double economyPrice, double firstClassPrice, LocalTime time, LocalDate date) {
+    public Flight(int economySeatsAvailable, int firstClassSeatsAvailable, String from, String to, double economyPrice, double firstClassPrice, LocalTime time, Date date) {
         this.economySeatsAvailable = economySeatsAvailable;
         this.firstClassSeatsAvailable = firstClassSeatsAvailable;
         this.from = from;
@@ -126,11 +126,11 @@ public class Flight {
         this.firstClassPrice = firstClassPrice;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
