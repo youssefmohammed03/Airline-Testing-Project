@@ -1,8 +1,6 @@
 package airline;
 
-import java.util.Date;
-
-
+import java.util.LocalDate;
 
 public class Passenger {
     private String name;
@@ -10,12 +8,12 @@ public class Passenger {
     private String email;
     private String phoneNumber;
     private String address;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String nationality;
     private Boolean isAdult;
     private Ticket ticket;
 
-    public Passenger(String name, String passportNumber, String email, String phoneNumber, String address, Date dateOfBirth, String nationality, Boolean isAdult) {
+    public Passenger(String name, String passportNumber, String email, String phoneNumber, String address, LocalDate dateOfBirth, String nationality, Boolean isAdult) {
         this.name = name;
         this.passportNumber = passportNumber;
         this.email = email;
@@ -73,7 +71,7 @@ public class Passenger {
         this.address = address;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
