@@ -1,7 +1,7 @@
 package airline;
 
 import java.time.Date;
-import java.time.LocalTime;
+import java.time.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +12,7 @@ public class Flight {
     private String to;
     private double economyPrice;
     private double firstClassPrice;
-    private LocalTime time;
+    private Time time;
     private Date date;
     private String flightId;
     public List<Ticket> tickets = new ArrayList<>();
@@ -66,7 +66,7 @@ public class Flight {
         }
     }
 
-    public Flight(int economySeatsAvailable, int firstClassSeatsAvailable, String from, String to, double economyPrice, double firstClassPrice, LocalTime time, Date date) {
+    public Flight(int economySeatsAvailable, int firstClassSeatsAvailable, String from, String to, double economyPrice, double firstClassPrice, Time time, Date date) {
         this.economySeatsAvailable = economySeatsAvailable;
         this.firstClassSeatsAvailable = firstClassSeatsAvailable;
         this.from = from;
@@ -134,11 +134,11 @@ public class Flight {
         this.date = date;
     }
 
-    public LocalTime getTime() {
+    public Time getTime() {
         return time;
     }
 
-    public void setTime(LocalTime time) {
+    public void setTime(Time time) {
         this.time = time;
     }
 
