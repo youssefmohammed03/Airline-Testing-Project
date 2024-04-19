@@ -15,6 +15,8 @@ public class Flight {
     private LocalTime time;
     private LocalDate date;
     private String flightId;
+    private boolean highDemand;
+    private boolean competitors;
     public List<Ticket> tickets = new ArrayList<>();
     
     public static List<Flight> flights = new ArrayList<>();
@@ -66,7 +68,7 @@ public class Flight {
         }
     }
 
-    public Flight(int economySeatsAvailable, int firstClassSeatsAvailable, String from, String to, double economyPrice, double firstClassPrice, LocalTime time, LocalDate date) {
+    public Flight(int economySeatsAvailable, int firstClassSeatsAvailable, String from, String to, double economyPrice, double firstClassPrice, LocalTime time, LocalDate date, boolean highDemand, boolean competitors) {
         this.economySeatsAvailable = economySeatsAvailable;
         this.firstClassSeatsAvailable = firstClassSeatsAvailable;
         this.from = from;
@@ -76,6 +78,8 @@ public class Flight {
         this.date = date;
         this.time = time;
         this.flightId = generateFlightNumber(this);
+        this.competitors = competitors;
+        this.highDemand = highDemand;
     }
 
     public int getEconomySeatsAvailable() {
@@ -163,7 +167,7 @@ public class Flight {
                 ", From: '" + from + '\'' +
                 ", To: '" + to + '\'' +
                 ", Date: " + date +
-                ", Local: " + time +
+                ", Time: " + time +
                 ", Economy Seats Available: " + economySeatsAvailable +
                 ", First Class Seats Available: " + firstClassSeatsAvailable +
                 ", Economy Price: " + economyPrice +
