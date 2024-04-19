@@ -12,6 +12,48 @@ public class Airline {
 		
 	}
 	
+	
+	public boolean bookSeat(Flight flight, String seatType, Passenger passenger) {
+		for (Flight flighttocheck : flights) {
+	        if (flighttocheck == flight) {
+	        	if (flight.getEconomySeatsAvailable() > 0 || flight.getFirstClassSeatsAvailable() > 0) {
+	                if (seatType.equalsIgnoreCase("Economy") && flight.getEconomySeatsAvailable() > 0) {
+	                    flight.setEconomySeatsAvailable(flight.getEconomySeatsAvailable() - 1);
+	                } else if (seatType.equalsIgnoreCase("First Class") && flight.getFirstClassSeatsAvailable() > 0) {
+	                    flight.setFirstClassSeatsAvailable(flight.getFirstClassSeatsAvailable() - 1);
+	                } else {
+	                    System.out.println("No available seats in the selected class.");
+	                    return false;
+	                }
+	                Ticket ticket = new Ticket(flight, passenger, seatType);
+	                passenger.setTicket(ticket);
+	                return true;
+	            } else {
+	                System.out.println("Sorry, no seats available for this flight.");
+	                return false;
+	            }
+	        }
+	    }
+		return false;
+    }
+	
+	 public boolean cancelBooking(Ticket ticket, Flight flight, Passenger passenger) {
+	        if (ticket != null) {
+	            if (ticket.getSeatType().equalsIgnoreCase("Economy")) {
+	                flight.setEconomySeatsAvailable(flight.getEconomySeatsAvailable() + 1);
+	            } else if (ticket.getSeatType().equalsIgnoreCase("First Class")) {
+	                flight.setFirstClassSeatsAvailable(flight.getFirstClassSeatsAvailable() + 1);
+	            }
+	            passenger.setTicket(null); // Remove ticket reference from passenger
+	            ticket = null; // Delete the ticket object
+	            return true;
+	        } else {
+	            System.out.println("No booking found for this passenger.");
+	            return false;
+	        }
+	    }
+	
+	
 	public List<Flight> searchFlight(String from, String to, LocalDate date) {
         List<Flight> matchingFlights = new ArrayList<>();
         for (Flight flight : flights) {
