@@ -17,33 +17,9 @@ public class Flight {
     private String flightId;
     private boolean highDemand;
     private boolean competitors;
-    public List<Ticket> tickets = new ArrayList<>();
+    private List<Ticket> tickets = new ArrayList<>();
     
-    public static List<Flight> flights = new ArrayList<>();
-    
-    public static List<Flight> searchFlight(String from, String to, LocalDate date) {
-        List<Flight> matchingFlights = new ArrayList<>();
-        for (Flight flight : flights) {
-            if (flight.getFrom().equalsIgnoreCase(from) &&
-                flight.getTo().equalsIgnoreCase(to) &&
-                flight.getDate().equals(date) &&
-                (flight.getEconomySeatsAvailable() > 0 || flight.getFirstClassSeatsAvailable() > 0)) {
-                matchingFlights.add(flight);
-            }
-        }
-        return matchingFlights;
-    }
-    
-    public static Flight searchFlightById(String flightId) {
-        for (Flight flight : flights) {
-            if (flight.getFlightId().equals(flightId)) {
-                return flight;
-            }
-        }
-        return null;
-    }
-    
-    private static String generateFlightNumber(Flight flight) {
+    private static String generateFlightNumber(List<Flight> flights, Flight flight) {
         int number = 10001;
         if (flights.isEmpty()) {
         	flights.add(0,flight);
@@ -68,7 +44,7 @@ public class Flight {
         }
     }
 
-    public Flight(int economySeatsAvailable, int firstClassSeatsAvailable, String from, String to, double economyPrice, double firstClassPrice, LocalTime time, LocalDate date, boolean highDemand, boolean competitors) {
+    public Flight(List<Flight> flights, int economySeatsAvailable, int firstClassSeatsAvailable, String from, String to, double economyPrice, double firstClassPrice, LocalTime time, LocalDate date, boolean highDemand, boolean competitors) {
         this.economySeatsAvailable = economySeatsAvailable;
         this.firstClassSeatsAvailable = firstClassSeatsAvailable;
         this.from = from;
@@ -77,10 +53,19 @@ public class Flight {
         this.firstClassPrice = firstClassPrice;
         this.date = date;
         this.time = time;
-        this.flightId = generateFlightNumber(this);
+        this.flightId = generateFlightNumber(flights, this);
         this.competitors = competitors;
         this.highDemand = highDemand;
     }
+    
+    public Ticket searchTicket(int ticketId) {
+	    for (Ticket ticket : tickets) {
+	        if (ticket.getTicketId() == ticketId) {
+	            return ticket;
+	        }
+	    }
+	    return null;
+	}
 
     public int getEconomySeatsAvailable() {
         return economySeatsAvailable;
@@ -150,32 +135,43 @@ public class Flight {
         return flightId;
     }
     
+    public void setHighDemand(boolean highDemand) {
+    	this.highDemand = highDemand;
+    }
     
+    public boolean getHighDemand() {
+    	return highDemand;
+    }
     
-    /*public Ticket searchTicket(int ticketId) {
-	    for (Ticket ticket : tickets) {
-	        if (ticket.getTicketId() == ticketId) {
-	            return ticket;
-	        }
-	    }
-	    return null;
-	}*/
+    public void setCompetitors(boolean competitors) {
+    	this.competitors = competitors;
+    }
+    
+    public boolean getCompetitors() {
+    	return competitors;
+    }
+    
+    public void setTickets(List <Ticket> tickets) {
+    	this.tickets = tickets;
+    }
+    
+    public List <Ticket> getTickets() {
+    	return tickets;
+    }
     
     @Override
     public String toString() {
         return "Flight Number: '" + flightId + '\'' +
-                ", From: '" + from + '\'' +
-                ", To: '" + to + '\'' +
-                ", Date: " + date +
-                ", Time: " + time +
-                ", Economy Seats Available: " + economySeatsAvailable +
-                ", First Class Seats Available: " + firstClassSeatsAvailable +
-                ", Economy Price: " + economyPrice +
-                ", First Class Price: " + firstClassPrice;
+                "\nFrom: '" + from + '\'' +
+                "\nTo: '" + to + '\'' +
+                "\nDate: " + date +
+                "\nTime: " + time +
+                "\nEconomy Seats Available: " + economySeatsAvailable +
+                "\nFirst Class Seats Available: " + firstClassSeatsAvailable +
+                "\nEconomy Price: $" + economyPrice +
+                "\nFirst Class Price: $" + firstClassPrice;
     }
-    
-    //Delete flight
-    //Ticket Search
 
+    
 }
 
