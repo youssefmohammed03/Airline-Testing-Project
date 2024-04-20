@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIpackage.AdminPanelController">
+   <children>
+      <Pane prefHeight="122.0" prefWidth="900.0" style="-fx-background-color: #C4EAE4;">
+         <children>
+            <Text layoutX="341.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Panel">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <AnchorPane layoutX="14.0" layoutY="134.0" prefHeight="325.0" prefWidth="254.0">
+         <children>
+            <Label layoutX="10" layoutY="10" text="Add Flight">
+               <font>
+                  <Font size="19.0" />
+               </font></Label>
+            <TextField fx:id="fromTextField" layoutX="10" layoutY="40" promptText="From" />
+            <TextField fx:id="toTextField" layoutX="10" layoutY="70" promptText="To" />
+            <TextField fx:id="economyPriceTextField" layoutX="10" layoutY="100" promptText="Economy Price" />
+            <TextField fx:id="firstClassPriceTextField" layoutX="10" layoutY="130" promptText="First Class Price" />
+            <TextField fx:id="timeTextField" layoutX="10" layoutY="160" promptText="Time" />
+            <TextField fx:id="dateTextField" layoutX="10" layoutY="190" promptText="Date" />
+            <TextField fx:id="flightIdTextField" layoutX="10" layoutY="220" promptText="Flight ID" />
+            <TextField fx:id="highDemandTextField" layoutX="10" layoutY="250" promptText="High Demand" />
+            <Button fx:id="addButton" layoutX="10" layoutY="280" onAction="#addFlightInfo" text="Add" />
+         </children>
+      </AnchorPane>
+      <TableView layoutX="243.0" layoutY="134.0" prefHeight="446.0" prefWidth="643.0">
+         <columns>
+            <TableColumn prefWidth="70.0" text="From">
+               <cellValueFactory>
+                  <PropertyValueFactory property="from" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="70.0" text="To">
+               <cellValueFactory>
+                  <PropertyValueFactory property="to" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="90.0" text="Economy Price">
+               <cellValueFactory>
+                  <PropertyValueFactory property="economyPrice" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="100.0" text="First Class Price">
+               <cellValueFactory>
+                  <PropertyValueFactory property="firstClassPrice" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="70.0" text="Time">
+               <cellValueFactory>
+                  <PropertyValueFactory property="time" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="70.0" text="Date">
+               <cellValueFactory>
+                  <PropertyValueFactory property="date" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Flight ID">
+               <cellValueFactory>
+                  <PropertyValueFactory property="flightId" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="90.0" text="High Demand">
+               <cellValueFactory>
+                  <PropertyValueFactory property="highDemand" />
+               </cellValueFactory>
+            </TableColumn>
+         </columns>
+      </TableView>
+      <Button fx:id="EditBtn" layoutX="242.0" layoutY="616.0" mnemonicParsing="false" onAction="#EditFlghtInfo" prefHeight="25.0" prefWidth="70.0" text="Edit" />
+      <Button fx:id="DeleteBtn" layoutX="323.0" layoutY="616.0" mnemonicParsing="false" onAction="#DeleteFlight" prefHeight="25.0" prefWidth="70.0" text="Delete" />
+   </children>
+</AnchorPane>
