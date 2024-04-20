@@ -1,7 +1,5 @@
 package airline;
 
-import java.util.List;
-
 public class Ticket {
     private int ticketId;
     private Flight flight;
@@ -55,15 +53,6 @@ public class Ticket {
     public void setPrice(double price) {
         this.price = price;
     }
-
-    /*public static Ticket searchTicket(int ticketId) {
-        for (Ticket ticket : tickets) {
-            if (ticket.getTicketId() == ticketId) {
-                return ticket;
-            }
-        }
-        return null;
-    }*/
     
     @Override
     public String toString() {

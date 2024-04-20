@@ -2,7 +2,9 @@ package airline;
 
 import java.time.LocalDate;
 
-public class Passenger extends User{
+public class Passenger {
+    private String username;
+    private String Password;
     private String name;
     private String passportNumber;
     private String email;
@@ -13,8 +15,10 @@ public class Passenger extends User{
     private Boolean isAdult;
     private Ticket ticket;
 
+
     public Passenger( String username, String Password, String name, String passportNumber, String email, String phoneNumber, String address, LocalDate dateOfBirth, String nationality, Boolean isAdult) {
-        super(username, Password);
+        this.username = username;
+        this.Password = Password;
         this.name = name;
         this.passportNumber = passportNumber;
         this.email = email;
@@ -23,6 +27,22 @@ public class Passenger extends User{
         this.dateOfBirth = dateOfBirth;
         this.nationality = nationality;
         this.isAdult = isAdult;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
     }
 
     public String getName() {
@@ -104,18 +124,9 @@ public class Passenger extends User{
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
+                ", username= '" + username + '\'' +
+                ", password= '" + Password + '\'' +
                 ", dateOfBirth=" + dateOfBirth+ '\'' +
                 " Above 18 =" + isAdult + "}";
-    }
-    @Override
-    public boolean signup(String username, String password) {
-        for (User user : users) {
-            if (user.username.equals(username)) {
-                System.out.println("Username already exists. Please try again.");
-                return false;
-            }
-        }
-        User.users.add(new Passenger(username, password, name, passportNumber, email, phoneNumber, address, dateOfBirth, nationality, isAdult));
-        return true;
-    }
+    }  
 }

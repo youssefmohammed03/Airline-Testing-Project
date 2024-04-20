@@ -7,12 +7,12 @@ import java.util.List;
 
 public class Airline {
 	public List<Flight> flights = new ArrayList<>();
-	
+	public List<Passenger> passengers = new ArrayList<>();
+	public List<Admin> admins = new ArrayList<>();
+
 	public Airline() {
 		
 	}
-	
-	
 	public boolean bookSeat(Flight flight, String seatType, Passenger passenger) {
 		for (Flight flighttocheck : flights) {
 	        if (flighttocheck == flight) {
@@ -135,5 +135,34 @@ public class Airline {
 		flights.get(index).setTime(time);
 		return true;
 	}
-	
+
+	public boolean signup(String username, String password, String name, String passportNumber, String email,String phoneNumber,String address,LocalDate dateOfBirth,String nationality, Boolean isAdult) {
+		for(Passenger passenger : passengers) {
+			if(passenger.getUsername().equals(username)) {
+				System.out.println("Username already exists. Please try again.");
+				return false;
+			}
+		}
+		Passenger passenger = new Passenger(username, password, name, passportNumber, email, phoneNumber, address, dateOfBirth,nationality, isAdult);
+		passengers.add(passenger);
+		System.out.println("Signup successful.");
+		return true;
+	}
+
+	public int login(String username, String password) {
+		for (Passenger passenger : passengers) {
+			if (passenger.getUsername().equals(username) && passenger.getPassword().equals(password)) {
+				System.out.println("Passenger Login successful.");
+				return 1;
+			}
+		}
+		for (Admin admin : admins) {
+			if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
+				System.out.println("Admin Login successful.");
+				return 0;
+			}
+		}
+		System.out.println("Invalid username or password. Please try again.");
+		return -1;
+	}
 }
