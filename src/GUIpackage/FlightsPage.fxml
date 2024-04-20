@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
@@ -28,57 +29,43 @@
                <center>
                   <Pane prefHeight="641.0" prefWidth="898.0" BorderPane.alignment="CENTER">
                      <children>
-
-                        <Button fx:id="confirmationButton" layoutX="342.0" layoutY="574.0" mnemonicParsing="false" onMouseClicked="#GoToPassengerInformationForm" prefHeight="25.0" prefWidth="217.0" text="Confirm Ticket" />
-                        <TableView layoutX="8.0" layoutY="24.0" prefHeight="446.0" prefWidth="643.0">
+                        <TableView fx:id="flightTableView" layoutX="20.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="443.0" prefWidth="864.0">
+                            <!-- Define columns -->
                             <columns>
-                                <TableColumn prefWidth="70.0" text="From">
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="from" />
-                                    </cellValueFactory>
-                                </TableColumn>
-                                <TableColumn prefWidth="70.0" text="To">
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="to" />
-                                    </cellValueFactory>
-                                </TableColumn>
-                                <TableColumn prefWidth="90.0" text="Economy Price">
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="economyPrice" />
-                                    </cellValueFactory>
-                                </TableColumn>
-                                <TableColumn prefWidth="100.0" text="First Class Price">
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="firstClassPrice" />
-                                    </cellValueFactory>
-                                </TableColumn>
-                                <TableColumn prefWidth="70.0" text="Time">
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="time" />
-                                    </cellValueFactory>
-                                </TableColumn>
-                                <TableColumn prefWidth="70.0" text="Date">
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="date" />
-                                    </cellValueFactory>
-                                </TableColumn>
-                                <TableColumn text="Flight ID">
+                                <TableColumn prefWidth="100" text="Flight ID">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="flightId" />
                                     </cellValueFactory>
                                 </TableColumn>
-                                <TableColumn prefWidth="90.0" text="High Demand">
+                                <TableColumn prefWidth="100" text="From">
                                     <cellValueFactory>
-                                        <PropertyValueFactory property="highDemand" />
+                                        <PropertyValueFactory property="from" />
                                     </cellValueFactory>
                                 </TableColumn>
+                                <TableColumn prefWidth="100" text="To">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="to" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="100" text="Date">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="date" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="100" text="Time">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="time" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn fx:id="classColumn" text="Class" />
                             </columns>
                         </TableView>
-                        <Text fx:id="deatilsLabel" layoutX="14.0" layoutY="501.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Ticket Details Should Appear here ...." wrappingWidth="611.13671875">
+                        <Text fx:id="deatilsLabel" layoutX="14.0" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Ticket Details Should Appear here ...." wrappingWidth="630.13671875">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Text>
+                        <Button fx:id="InfoBtn" layoutX="322.0" layoutY="588.0" mnemonicParsing="false" onAction="#GoToPassengerInformationForm" text="Confirm Ticket And fill Passenger Information" />
                      </children>
                   </Pane>
                </center>

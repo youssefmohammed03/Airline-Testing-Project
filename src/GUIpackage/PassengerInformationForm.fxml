@@ -53,7 +53,8 @@
                         <CheckBox fx:id="adultCheckBox" prefHeight="17.0" prefWidth="82.0" text="Adult" />
                      </children>
                   </VBox>
-                  <Button fx:id="confirmPassengerInfo" layoutX="276.0" layoutY="531.0" mnemonicParsing="false" onMouseClicked="#CheckInformation" prefHeight="57.0" prefWidth="351.0" text="Confirm Passenger Information" />
+                  <Button fx:id="confirmPassengerInfo" layoutX="276.0" layoutY="531.0" mnemonicParsing="false" onAction="#CheckInfoAndDisplaySuccessOrError" prefHeight="57.0" prefWidth="351.0" text="Confirm Passenger Information" />
+                  <Button fx:id="BackBtn" layoutX="14.0" layoutY="609.0" mnemonicParsing="false" onMouseClicked="#BackOneScene" prefHeight="51.0" prefWidth="80.0" text="Back" />
                </children>
             </Pane>
          </center>
