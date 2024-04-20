@@ -66,6 +66,21 @@ public class Flight {
 	    }
 	    return null;
 	}
+    
+    public void addTicket(Ticket ticket) {
+        tickets.add(ticket);
+    }
+
+    public boolean removeTicket(int ticketId) {
+        for (int i = 0; i < tickets.size(); i++) {
+            if (tickets.get(i).getTicketId() == ticketId) {
+                tickets.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public int getEconomySeatsAvailable() {
         return economySeatsAvailable;
@@ -161,16 +176,27 @@ public class Flight {
     
     @Override
     public String toString() {
-        return "Flight Number: '" + flightId + '\'' +
-                "\nFrom: '" + from + '\'' +
-                "\nTo: '" + to + '\'' +
-                "\nDate: " + date +
-                "\nTime: " + time +
-                "\nEconomy Seats Available: " + economySeatsAvailable +
-                "\nFirst Class Seats Available: " + firstClassSeatsAvailable +
-                "\nEconomy Price: $" + economyPrice +
-                "\nFirst Class Price: $" + firstClassPrice;
+        StringBuilder sb = new StringBuilder();
+        sb.append("Flight Number: '").append(flightId).append('\'')
+          .append("\nFrom: '").append(from).append('\'')
+          .append("\nTo: '").append(to).append('\'')
+          .append("\nDate: ").append(date)
+          .append("\nTime: ").append(time)
+          .append("\nEconomy Seats Available: ").append(economySeatsAvailable)
+          .append("\nFirst Class Seats Available: ").append(firstClassSeatsAvailable)
+          .append("\nEconomy Price: $").append(economyPrice)
+          .append("\nFirst Class Price: $").append(firstClassPrice)
+          .append("\nHigh Demand: ").append(highDemand)
+          .append("\nCompetitors: ").append(competitors)
+          .append("\nTickets:\n");
+
+        for (Ticket ticket : tickets) {
+            sb.append(ticket.toString()).append("\n");
+        }
+
+        return sb.toString();
     }
+
 
     
 }

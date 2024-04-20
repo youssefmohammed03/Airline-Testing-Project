@@ -85,7 +85,7 @@ public class Airline {
 	    return -1;
 	}
 	
-	public void createFlight(List <Flight> flights,int economySeatsAvailable, int firstClassSeatsAvailable, String from, String to, double distance, LocalTime time, LocalDate date, boolean highDemand, boolean competitors) {
+	public void createFlight(int economySeatsAvailable, int firstClassSeatsAvailable, String from, String to, double distance, LocalTime time, LocalDate date, boolean highDemand, boolean competitors) {
 		double economyprice = economyFare(distance, highDemand, competitors);
 		double firstclassprice = firstclassFare(distance, highDemand, competitors);
 		
@@ -121,6 +121,7 @@ public class Airline {
 	public boolean cancelFlight(String ID) {
 		int index = searchIndexFlightById(ID);
 		if (index == -1) return false;
+		flights.set(index, null);
 		flights.remove(index);
 		return true;
 	}
