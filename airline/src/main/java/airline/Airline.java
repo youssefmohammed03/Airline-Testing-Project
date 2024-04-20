@@ -27,6 +27,7 @@ public class Airline {
 	                }
 	                Ticket ticket = new Ticket(flight, passenger, seatType);
 	                passenger.setTicket(ticket);
+	                flight.addTicket(ticket);
 	                return true;
 	            } else {
 	                System.out.println("Sorry, no seats available for this flight.");
@@ -45,6 +46,7 @@ public class Airline {
 	                flight.setFirstClassSeatsAvailable(flight.getFirstClassSeatsAvailable() + 1);
 	            }
 	            passenger.setTicket(null); // Remove ticket reference from passenger
+	            flight.removeTicket(ticket.getTicketId());
 	            ticket = null; // Delete the ticket object
 	            return true;
 	        } else {
