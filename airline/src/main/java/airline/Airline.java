@@ -11,7 +11,9 @@ public class Airline {
 	public List<Admin> admins = new ArrayList<>();
 
 	public Airline() {
-		
+		admins.add(new Admin("admin1", "admin1"));
+		admins.add(new Admin("admin2", "admin2"));
+		admins.add(new Admin("admin3", "admin3"));
 	}
 	public boolean bookSeat(Flight flight, String seatType, Passenger passenger) {
 		for (Flight flighttocheck : flights) {

@@ -18,6 +18,7 @@ public class App {
         for (Flight f : flightsAvaialble) {
             System.out.println(f.toString());
         }
+        
 	}
 
 }

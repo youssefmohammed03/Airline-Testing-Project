@@ -150,6 +150,10 @@ public class Flight {
         return flightId;
     }
     
+    public void setFlightId(String flightId) {
+    	this.flightId = flightId;
+    }
+    
     public void setHighDemand(boolean highDemand) {
     	this.highDemand = highDemand;
     }
