@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIpackage.PassengerInformationFormController">
+   <children>
+      <BorderPane prefHeight="801.0" prefWidth="901.0">
+         <top>
+            <Pane prefHeight="121.0" prefWidth="901.0" style="-fx-background-color: #C4EAE4;" BorderPane.alignment="CENTER">
+               <children>
+                  <Text layoutX="144.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please Enter Your Information in the Below Form" textAlignment="CENTER" wrappingWidth="613.13671875">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </top>
+         <center>
+            <Pane prefHeight="679.0" prefWidth="901.0">
+               <children>
+                  <VBox layoutX="25.0" layoutY="60.0" prefHeight="471.0" prefWidth="200.0" spacing="20.0">
+                     <children>
+                        <Label style="-fx-font-size: 15px;" text="Name" />
+                        <Label style="-fx-font-size: 15px;" text="Passport Number" />
+                        <Label style="-fx-font-size: 15px;" text="Email" />
+                        <Label style="-fx-font-size: 15px;" text="Phone Number" />
+                        <Label style="-fx-font-size: 15px;" text="Address" />
+                        <Label style="-fx-font-size: 15px;" text="Date of Birth" />
+                        <Label style="-fx-font-size: 15px;" text="Nationality" />
+                        <Label prefHeight="21.0" prefWidth="118.0" style="-fx-font-size: 15px;" text="Adult (Age +6)" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="251.0" layoutY="60.0" prefHeight="458.0" prefWidth="200.0" spacing="16.0">
+                     <children>
+                        <TextField fx:id="nameTextField" promptText="Name" />
+                        <TextField fx:id="passportNumberTextField" promptText="Passport Number" />
+                        <TextField fx:id="emailTextField" promptText="Email" />
+                        <TextField fx:id="phoneNumberTextField" promptText="Phone Number" />
+                        <TextField fx:id="addressTextField" promptText="Address" />
+                        <DatePicker fx:id="dobDatePicker" promptText="Date of Birth" />
+                        <TextField fx:id="nationalityTextField" promptText="Nationality" />
+                        <CheckBox fx:id="adultCheckBox" prefHeight="17.0" prefWidth="82.0" text="Adult" />
+                     </children>
+                  </VBox>
+                  <Button fx:id="confirmPassengerInfo" layoutX="276.0" layoutY="531.0" mnemonicParsing="false" onAction="#CheckInfoAndDisplaySuccessOrError" prefHeight="57.0" prefWidth="351.0" text="Confirm Passenger Information" />
+                  <Button fx:id="BackBtn" layoutX="14.0" layoutY="609.0" mnemonicParsing="false" onMouseClicked="#BackOneScene" prefHeight="51.0" prefWidth="80.0" text="Back" />
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

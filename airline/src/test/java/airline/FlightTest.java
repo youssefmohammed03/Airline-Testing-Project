@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.*;
 
+import GUIpackage.Flight;
+
 class FlightTest {
 	
 	public static List<Flight> flights = new ArrayList<>();

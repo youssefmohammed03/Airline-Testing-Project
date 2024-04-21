@@ -1,4 +1,4 @@
-package airline;
+package GUIpackage;
 
 import java.time.LocalDate;
 

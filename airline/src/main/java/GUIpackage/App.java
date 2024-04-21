@@ -1,4 +1,4 @@
-package airline;
+package GUIpackage;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -18,7 +18,6 @@ public class App {
         for (Flight f : flightsAvaialble) {
             System.out.println(f.toString());
         }
-        
 	}
 
 }

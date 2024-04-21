@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIpackage.LoginPageController">
+    <stylesheets>
+        <URL value="@loginpage.css" />
+    </stylesheets>
+   <children>
+      <HBox layoutX="154.0" layoutY="363.0" prefHeight="100.0" prefWidth="592.0">
+         <children>
+            <Label prefHeight="25.0" prefWidth="90.0" text="E-mail">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailPlaceholder" prefHeight="25.0" prefWidth="470.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="154.0" layoutY="484.0" prefHeight="100.0" prefWidth="592.0">
+         <children>
+            <Label prefHeight="25.0" prefWidth="90.0" text="Password">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="passwordPlaceholder" prefHeight="25.0" prefWidth="470.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="260.0" prefWidth="900.0" style="-fx-background-color: #C4EAE4;">
+         <children>
+            <Label contentDisplay="CENTER" prefHeight="17.0" prefWidth="514.0" text="Airline Reservation System" textFill="#272e2d">
+               <font>
+                  <Font size="43.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" right="10.0" />
+               </HBox.margin>
+            </Label>
+            <ImageView fitHeight="147.0" fitWidth="166.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/pngegg%20(1).png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <VBox alignment="TOP_CENTER" layoutX="155.0" layoutY="553.0" prefHeight="111.0" prefWidth="573.0">
+         <children>
+            <Button fx:id="LoginButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLogin" prefHeight="25.0" prefWidth="188.0" text="Login">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Label fx:id="signUpLink" alignment="TOP_CENTER" onMouseClicked="#handleSignup" prefHeight="17.0" prefWidth="600.0" text="Don't Have an account ,Sign up">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

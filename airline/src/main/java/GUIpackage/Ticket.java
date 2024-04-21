@@ -1,4 +1,4 @@
-package airline;
+package GUIpackage;
 
 public class Ticket {
     private String ticketId;
