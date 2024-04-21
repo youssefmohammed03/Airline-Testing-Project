@@ -8,10 +8,10 @@ public class Ticket {
     private double price;
 
 
-    public Ticket(Flight flight, Passenger passenger, String seatType) {
-        this.flight = flight;
-        this.passenger = passenger;
+    public Ticket(int ticketId, String seatType, double price) {
+        this.ticketId = ticketId;
         this.seatType = seatType;
+        this.price = price;
     }
 
     public int getTicketId() {
