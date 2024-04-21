@@ -16,18 +16,24 @@ public class Airline {
 		admins.add(new Admin("admin3", "admin3"));
 	}
 	public boolean bookSeat(Flight flight, String seatType, Passenger passenger) {
+		double final_price;
+		String ticketid;
 		for (Flight flighttocheck : flights) {
 	        if (flighttocheck == flight) {
 	        	if (flight.getEconomySeatsAvailable() > 0 || flight.getFirstClassSeatsAvailable() > 0) {
 	                if (seatType.equalsIgnoreCase("Economy") && flight.getEconomySeatsAvailable() > 0) {
+	                	ticketid = "e "+ Integer.toString(flight.getEconomySeatsAvailable());
 	                    flight.setEconomySeatsAvailable(flight.getEconomySeatsAvailable() - 1);
+	                    final_price = flight.getEconomyPrice();
 	                } else if (seatType.equalsIgnoreCase("First Class") && flight.getFirstClassSeatsAvailable() > 0) {
-	                    flight.setFirstClassSeatsAvailable(flight.getFirstClassSeatsAvailable() - 1);
+	                	ticketid = "fc "+ Integer.toString(flight.getFirstClassSeatsAvailable());
+	                	flight.setFirstClassSeatsAvailable(flight.getFirstClassSeatsAvailable() - 1);
+	                    final_price = flight.getFirstClassPrice();
 	                } else {
 	                    System.out.println("No available seats in the selected class.");
 	                    return false;
 	                }
-	                Ticket ticket = new Ticket(flight, passenger, seatType);
+	                Ticket ticket = new Ticket(ticketid, seatType, final_price);
 	                passenger.setTicket(ticket);
 	                flight.addTicket(ticket);
 	                return true;
@@ -44,7 +50,7 @@ public class Airline {
 	        if (ticket != null) {
 	            if (ticket.getSeatType().equalsIgnoreCase("Economy")) {
 	                flight.setEconomySeatsAvailable(flight.getEconomySeatsAvailable() + 1);
-	            } else if (ticket.getSeatType().equalsIgnoreCase("First Class")) {
+	            } else if (ticket.getSeatType().equalsIgnoreCase("FirstClass")) {
 	                flight.setFirstClassSeatsAvailable(flight.getFirstClassSeatsAvailable() + 1);
 	            }
 	            passenger.setTicket(null); // Remove ticket reference from passenger

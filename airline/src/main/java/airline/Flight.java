@@ -58,7 +58,7 @@ public class Flight {
         this.highDemand = highDemand;
     }
     
-    public Ticket searchTicket(int ticketId) {
+    public Ticket searchTicket(String ticketId) {
 	    for (Ticket ticket : tickets) {
 	        if (ticket.getTicketId() == ticketId) {
 	            return ticket;
@@ -71,7 +71,7 @@ public class Flight {
         tickets.add(ticket);
     }
 
-    public boolean removeTicket(int ticketId) {
+    public boolean removeTicket(String ticketId) {
         for (int i = 0; i < tickets.size(); i++) {
             if (tickets.get(i).getTicketId() == ticketId) {
                 tickets.remove(i);

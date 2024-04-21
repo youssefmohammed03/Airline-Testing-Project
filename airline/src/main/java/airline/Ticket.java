@@ -1,20 +1,20 @@
 package airline;
 
 public class Ticket {
-    private int ticketId;
+    private String ticketId;
     private Flight flight;
     private Passenger passenger;
     private String seatType;
     private double price;
 
 
-    public Ticket(int ticketId, String seatType, double price) {
+    public Ticket(String ticketId, String seatType, double price) {
         this.ticketId = ticketId;
         this.seatType = seatType;
         this.price = price;
     }
 
-    public int getTicketId() {
+    public String getTicketId() {
         return ticketId;
     }
 
@@ -34,7 +34,7 @@ public class Ticket {
         return price;
     }
 
-    public void setTicketId(int ticketId) {
+    public void setTicketId(String ticketId) {
         this.ticketId = ticketId;
     }
     
