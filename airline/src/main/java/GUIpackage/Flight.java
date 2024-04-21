@@ -73,7 +73,7 @@ public class Flight {
 
     public boolean removeTicket(String ticketId) {
         for (int i = 0; i < tickets.size(); i++) {
-            if (tickets.get(i).getTicketId() == ticketId) {
+            if (tickets.get(i).getTicketId().equals(ticketId)) {
                 tickets.remove(i);
                 return true;
             }
