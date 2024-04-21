@@ -26,8 +26,8 @@ class FlightTest {
 		assertEquals(flights.get(4).getFlightId(), "10005");
 		flights.get(4).setFlightId("99999");
 		Flight flight6 = new Flight(flights, 200, 40, "New York", "Tokyo",  248 ,450 , LocalTime.of(21, 30), LocalDate.of(2023, 4, 28), true, true);
-		assertEquals(flights.get(4).getFlightId(), "10005");
 		assertEquals(flights.get(5).getFlightId(), "99999");
+		assertEquals(flights.get(4).getFlightId(), "10005");
 	}
 
 }
