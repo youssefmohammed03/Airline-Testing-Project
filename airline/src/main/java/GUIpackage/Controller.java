@@ -246,27 +246,26 @@ public class Controller{
 
    @FXML
    void GoToFlightsPage(ActionEvent event) {
-	   System.out.println("Enter the function");
-	   System.out.println("All:");
-	   for(Flight f:this.a.flights) {
-		   System.out.println(f.toString());
-	   }
-	   this.a.p.setDesiredFlightst(this.a.searchFlight(Departure.getText(), Arrival.getText(), flightdatepicker.getValue()));
-	   try {
-           FXMLLoader loader = new FXMLLoader(getClass().getResource("FlightsPage.fxml"));
-           Parent root = loader.load();
+	   Airline.p.setDesiredFlightst(this.a.searchFlight(Departure.getText(), Arrival.getText(), flightdatepicker.getValue()));
+	   if(Airline.p.getDesiredFlights().isEmpty()) {
+		   Alert alert = new Alert(Alert.AlertType.INFORMATION);
+           alert.setTitle("Failed");
+           alert.setHeaderText(null);
+           alert.setContentText("There is no flights available for this search.");
 
-           Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-           stage.getScene().setRoot(root);
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-	   System.out.println("Desired:");
-	   for(Flight f:this.a.p.getDesiredFlights()) {
-		   System.out.println(f.toString());
+           alert.showAndWait();
+	   } else {
+		   try {
+			   FXMLLoader loader = new FXMLLoader(getClass().getResource("FlightsPage.fxml"));
+			   Parent root = loader.load();
+			   
+			   Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			   
+			   stage.getScene().setRoot(root);
+		   } catch (IOException e) {
+			   e.printStackTrace();
+		   } 
 	   }
-	   System.out.println("Exit the function");
    }
 
 

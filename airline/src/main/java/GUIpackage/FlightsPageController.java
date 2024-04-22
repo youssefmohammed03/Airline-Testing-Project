@@ -1,6 +1,8 @@
 package GUIpackage;
 
 import java.io.IOException;
+
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -27,6 +29,12 @@ import javafx.stage.Stage;
 
 
 public class FlightsPageController {
+	
+	private Airline a = new Airline();
+	
+	private Flight selectedFlight;
+	
+	public static String seatType;
     
     @FXML
     private TableView<Flight> flightTableView;
@@ -60,21 +68,41 @@ public class FlightsPageController {
 
    @FXML
     void GoToPassengerInformationForm(ActionEvent event) throws IOException {
-        try {
-            // Load the new FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("PassengerInformationForm.fxml"));
-            Parent root = loader.load();
+	   	if(selectedFlight == null) {
+	   		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Failed");
+            alert.setHeaderText(null);
+            alert.setContentText("No selected flight.");
 
-            // Get the current stage
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            alert.showAndWait();
+            return;
+	   	}
+	   	if(FlightsPageController.seatType == null) {
+	   		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Failed");
+            alert.setHeaderText(null);
+            alert.setContentText("No selected Seat.");
 
-            // Set the root of the scene to the content of the new FXML file
-            stage.getScene().setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Handle the exception accordingly
+            alert.showAndWait();
+            return;
+	   	}
+        boolean isBooked = a.bookSeat(selectedFlight, FlightsPageController.seatType, Airline.p);
+        if(isBooked) {
+        	Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        	alert.setTitle("Confirmation");
+        	alert.setHeaderText(null);
+        	alert.setContentText("Ticket confirmed!");
+        	
+        	alert.showAndWait();
+        } else {
+        	Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Failed");
+            alert.setHeaderText(null);
+            alert.setContentText("There is no seats avialble for the chosen class");
+
+            alert.showAndWait();
         }
-
+        	   
     }
 
 
@@ -112,6 +140,10 @@ public class FlightsPageController {
                 btn1.setToggleGroup(group);
                 btn2.setToggleGroup(group);
                 setGraphic(new HBox(10, btn1, btn2));
+
+                // Add event listeners to the RadioButtons
+                btn1.setOnAction(event -> handleSeatSelection("First Class"));
+                btn2.setOnAction(event -> handleSeatSelection("Economy"));
             }
 
             @Override
@@ -123,12 +155,17 @@ public class FlightsPageController {
                     setGraphic(new HBox(10, btn1, btn2));
                 }
             }
+
+            // Method to handle seat selection
+            private void handleSeatSelection(String seatType) {
+                FlightsPageController.seatType = seatType;
+            }
         });
          flightTableView.setOnMouseClicked(event -> {
         // Check if it's a double-click
         if (event.getClickCount() == 2) {
             // Get the selected flight
-            Flight selectedFlight = flightTableView.getSelectionModel().getSelectedItem();
+            this.selectedFlight = flightTableView.getSelectionModel().getSelectedItem();
 
             // Display the flight details in the deatilsLabel
             if (selectedFlight != null) {
