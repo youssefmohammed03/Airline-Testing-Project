@@ -32,8 +32,6 @@ public class LoginPageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
- 
-
 
     @FXML
     private TextField emailPlaceholder;
@@ -61,7 +59,7 @@ public class LoginPageController implements Initializable {
     }
 
     @FXML
-    public void handleSignup(MouseEvent event) {
+    public void handleSignup(ActionEvent event) {
         try {
             // Load the new FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));

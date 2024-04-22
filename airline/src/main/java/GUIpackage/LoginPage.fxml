@@ -12,14 +12,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIpackage.LoginPageController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIpackage.Controller">
     <stylesheets>
         <URL value="@loginpage.css" />
     </stylesheets>
    <children>
       <HBox layoutX="154.0" layoutY="363.0" prefHeight="100.0" prefWidth="592.0">
          <children>
-            <Label prefHeight="25.0" prefWidth="90.0" text="E-mail">
+            <Label prefHeight="25.0" prefWidth="90.0" text="Username">
                <font>
                   <Font size="17.0" />
                </font>
@@ -61,7 +61,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Label fx:id="signUpLink" alignment="TOP_CENTER" onMouseClicked="#handleSignup" prefHeight="17.0" prefWidth="600.0" text="Don't Have an account ,Sign up">
+            <Label fx:id="signUpLink" alignment="TOP_CENTER" onMouseClicked="#handleSignup" prefHeight="17.0" prefWidth="600.0" text="Don't Have an account? ">
                <font>
                   <Font size="16.0" />
                </font>
@@ -69,6 +69,11 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </Label>
+            <Button fx:id="SignupButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSignup" prefHeight="26.0" prefWidth="98.0" text="Signup">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
    </children>
