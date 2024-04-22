@@ -1,14 +1,21 @@
 package GUIpackage;
 
+import java.awt.Label;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
@@ -29,14 +36,15 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class Controller implements Initializable{
+public class Controller{
 	
 	private Airline a;
-
+	
+	
     public Controller() {
         this.a = new Airline();
     }
-	
+    
 	@FXML
     private Button BackBtnToLogin;
 
@@ -117,22 +125,6 @@ public class Controller implements Initializable{
 
     @FXML
     private DatePicker flightdatepicker;
-    
-    @FXML
-    private Button BackBtn2;
-
-    @FXML
-    private Button InfoBtn;
-
-    @FXML
-    private TableColumn<?, ?> classColumn;
-
-    @FXML
-    private Text deatilsLabel;
-
-    @FXML
-    private TableView<?> flightTableView;
-
 
     
     @FXML
@@ -254,7 +246,9 @@ public class Controller implements Initializable{
 
    @FXML
    void GoToFlightsPage(ActionEvent event) {
-	   for(Flight f:this.a.p.getDesiredFlights()) {
+	   System.out.println("Enter the function");
+	   System.out.println("All:");
+	   for(Flight f:this.a.flights) {
 		   System.out.println(f.toString());
 	   }
 	   this.a.p.setDesiredFlightst(this.a.searchFlight(Departure.getText(), Arrival.getText(), flightdatepicker.getValue()));
@@ -268,102 +262,12 @@ public class Controller implements Initializable{
        } catch (IOException e) {
            e.printStackTrace();
        }
+	   System.out.println("Desired:");
 	   for(Flight f:this.a.p.getDesiredFlights()) {
 		   System.out.println(f.toString());
 	   }
+	   System.out.println("Exit the function");
    }
-   
-   @FXML
-   void GoToCustomerFlight(ActionEvent event) {
-	   try {
-	           FXMLLoader loader = new FXMLLoader(getClass().getResource("CustomerFlight.fxml"));
-	           Parent root = loader.load();
-
-	           Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-	           stage.getScene().setRoot(root);
-	       } catch (IOException e) {
-	           e.printStackTrace();
-	       }
-   }
-
-   @FXML
-   void GoToPassengerInformationForm(ActionEvent event) {
-	   try {
-           FXMLLoader loader = new FXMLLoader(getClass().getResource("PassengerInformationForm.fxml"));
-           Parent root = loader.load();
-
-           Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-           stage.getScene().setRoot(root);
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-   }
-   
-   @FXML
-   public void initialize() {
-       // Set up columns
-       TableColumn<Flight, String> flightIdColumn = new TableColumn<>("Flight ID");
-       flightIdColumn.setCellValueFactory(new PropertyValueFactory<>("flightId"));
-
-       TableColumn<Flight, String> fromColumn = new TableColumn<>("From");
-       fromColumn.setCellValueFactory(new PropertyValueFactory<>("from"));
-
-       TableColumn<Flight, String> toColumn = new TableColumn<>("To");
-       toColumn.setCellValueFactory(new PropertyValueFactory<>("to"));
-
-       TableColumn<Flight, LocalDate> dateColumn = new TableColumn<>("Date");
-       dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-
-       TableColumn<Flight, LocalTime> timeColumn = new TableColumn<>("Time");
-       timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
-       
-       flightTableView.setMinSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
-       flightTableView.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
-
-       // Add flights to the TableView
-       flightTableView.getItems().addAll(this.a.p.getDesiredFlights());
-       // Set the cell factory for the classColumn
-       classColumn.setCellFactory(param -> new TableCell<Flight, Void>() {
-           private final RadioButton btn1 = new RadioButton("First Class");
-           private final RadioButton btn2 = new RadioButton("Economy");
-           private final ToggleGroup group = new ToggleGroup();
-
-           {
-               btn1.setToggleGroup(group);
-               btn2.setToggleGroup(group);
-               setGraphic(new HBox(10, btn1, btn2));
-           }
-
-           @Override
-           public void updateItem(Void item, boolean empty) {
-               super.updateItem(item, empty);
-               if (empty) {
-                   setGraphic(null);
-               } else {
-                   setGraphic(new HBox(10, btn1, btn2));
-               }
-           }
-       });
-        flightTableView.setOnMouseClicked(event -> {
-       // Check if it's a double-click
-       if (event.getClickCount() == 2) {
-           // Get the selected flight
-           Flight selectedFlight = flightTableView.getSelectionModel().getSelectedItem();
-
-           // Display the flight details in the deatilsLabel
-           if (selectedFlight != null) {
-               String flightDetails = String.format("From: %s  To: %s  Time: %s  Date: %s",
-                       selectedFlight.getFrom(),
-                       selectedFlight.getTo(),
-                       selectedFlight.getTime(),
-                       selectedFlight.getDate());
-               deatilsLabel.setText(flightDetails);
-           }
-       }
-   });
-}
 
 
 }

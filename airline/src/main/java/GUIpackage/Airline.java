@@ -9,7 +9,7 @@ public class Airline {
 	public static List<Flight> flights = new ArrayList<>();
 	public static List<Passenger> passengers = new ArrayList<>();
 	public static Passenger p;
-	public List<Admin> admins = new ArrayList<>();
+	public static List<Admin> admins = new ArrayList<>();
 
 	public Airline() {
 		admins.add(new Admin("admin1", "admin1"));

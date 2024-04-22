@@ -39,7 +39,6 @@ public class FlightsPageController {
     @FXML
     private Text deatilsLabel;
 
-    private List<Flight> flights = new ArrayList<>();
     @FXML
     private TableView<Flight> FilghtsTable;
 
@@ -50,7 +49,7 @@ public class FlightsPageController {
 
 
     @FXML
-    void BackOneScene(MouseEvent event) throws IOException {
+    void BackOneScene(ActionEvent event) throws IOException {
     
     Parent previousSceneParent = FXMLLoader.load(getClass().getResource("CustomerFlight.fxml"));
     Scene previousScene = new Scene(previousSceneParent);
@@ -101,13 +100,8 @@ public class FlightsPageController {
         flightTableView.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
 
        
-
-        // Add dummy flight data (replace with actual flight data)
-        flights.add(new Flight(flights, 100, 50, "New York", "Los Angeles", 200.0, 500.0, LocalTime.now(), LocalDate.now(), true, false));
-         flights.add(new Flight(flights, 120, 60, "Los Angeles", "New York", 250.0, 550.0, LocalTime.now(), LocalDate.now(), false, true));
-
         // Add flights to the TableView
-        flightTableView.getItems().addAll(flights);
+        flightTableView.getItems().addAll(Airline.p.getDesiredFlights());
         // Set the cell factory for the classColumn
         classColumn.setCellFactory(param -> new TableCell<Flight, Void>() {
             private final RadioButton btn1 = new RadioButton("First Class");
