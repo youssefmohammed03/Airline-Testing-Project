@@ -14,7 +14,7 @@ public class Airline {
 	public Airline() {
 		admins.add(new Admin("admin1", "admin1"));
 		admins.add(new Admin("admin2", "admin2"));
-		admins.add(new Admin("admin3", "admin3"));
+		admins.add(new Admin("admin3", "admin3"));        
 	}
 	public boolean bookSeat(Flight flight, String seatType, Passenger passenger) {
 		double final_price;
@@ -132,8 +132,7 @@ public class Airline {
 	public boolean cancelFlight(String ID) {
 		int index = searchIndexFlightById(ID);
 		if (index == -1) return false;
-		flights.set(index, null);
-		//flights.remove(index);
+		flights.remove(index);
 		return true;
 	}
 	
