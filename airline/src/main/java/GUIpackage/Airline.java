@@ -102,7 +102,7 @@ public class Airline {
 		Flight flight = new Flight(flights, economySeatsAvailable, firstClassSeatsAvailable, from, to,  economyprice ,firstclassprice , time,  date, highDemand, competitors);
 	}
 	
-	private double economyFare(double distance, boolean highDemand, boolean competitors) {
+	public double economyFare(double distance, boolean highDemand, boolean competitors) {
 		
 		double economyprice = distance * 0.2;
 		
@@ -115,15 +115,15 @@ public class Airline {
 		return economyprice;
 	}
 	
-	private double firstclassFare(double distance, boolean highDemand, boolean competitors) {
+	public double firstclassFare(double distance, boolean highDemand, boolean competitors) {
 		
 		double firstclassprice = distance * 0.4;
 		
 		if(highDemand) 
-			firstclassprice = firstclassprice * 1.2;
+			firstclassprice = firstclassprice * 1.3;
 		
 		if(competitors)
-			firstclassprice = firstclassprice * 0.8;
+			firstclassprice = firstclassprice * 0.75;
 		
 		return firstclassprice;
 	}
@@ -132,7 +132,7 @@ public class Airline {
 		int index = searchIndexFlightById(ID);
 		if (index == -1) return false;
 		flights.set(index, null);
-		flights.remove(index);
+		//flights.remove(index);
 		return true;
 	}
 	
