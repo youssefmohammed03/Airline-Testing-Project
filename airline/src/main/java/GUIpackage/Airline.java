@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Airline {
-	public List<Flight> flights = new ArrayList<>();
-	public List<Passenger> passengers = new ArrayList<>();
-	public List<Admin> admins = new ArrayList<>();
+	public static List<Flight> flights = new ArrayList<>();
+	public static List<Passenger> passengers = new ArrayList<>();
+	public static Passenger p;
+	public static List<Admin> admins = new ArrayList<>();
 
 	public Airline() {
 		admins.add(new Admin("admin1", "admin1"));
@@ -161,6 +162,7 @@ public class Airline {
 		for (Passenger passenger : passengers) {
 			if (passenger.getUsername().equals(username) && passenger.getPassword().equals(password)) {
 				System.out.println("Passenger Login successful.");
+				this.p = passenger;
 				return 1;
 			}
 		}

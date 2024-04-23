@@ -43,7 +43,6 @@ public class LoginAndSignUP extends Application {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Logout");
 		alert.setHeaderText("You're about to close program!");
-		alert.setContentText("Do you want to save before exiting?");
 		
 		if (alert.showAndWait().get() == ButtonType.OK){
 			System.out.println("You successfully logged out");

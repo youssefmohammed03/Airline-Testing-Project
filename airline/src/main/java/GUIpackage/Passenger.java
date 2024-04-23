@@ -1,6 +1,8 @@
 package GUIpackage;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Passenger {
     private String username;
@@ -14,6 +16,7 @@ public class Passenger {
     private String nationality;
     private Boolean isAdult;
     private Ticket ticket;
+    private List <Flight> desiredFlights = new ArrayList<>();
 
 
     public Passenger( String username, String Password, String name, String passportNumber, String email, String phoneNumber, String address, LocalDate dateOfBirth, String nationality, Boolean isAdult) {
@@ -114,6 +117,14 @@ public class Passenger {
     
     public Ticket getTicket() {
     	return ticket;
+    }
+    
+    public void setDesiredFlightst(List<Flight> desiredFlights) {
+    	this.desiredFlights = desiredFlights;
+    }
+    
+    public List<Flight> getDesiredFlights() {
+    	return desiredFlights;
     }
 
     @Override
