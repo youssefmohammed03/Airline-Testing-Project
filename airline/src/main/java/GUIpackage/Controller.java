@@ -85,33 +85,6 @@ public class Controller{
     private TextField passwordPlaceholder;
     
     @FXML
-    private Button addButton;
-
-    @FXML
-    private TextField dateTextField;
-
-    @FXML
-    private TextField economyPriceTextField;
-
-    @FXML
-    private TextField firstClassPriceTextField;
-
-    @FXML
-    private TextField flightIdTextField;
-
-    @FXML
-    private TextField fromTextField;
-
-    @FXML
-    private TextField highDemandTextField;
-
-    @FXML
-    private TextField timeTextField;
-
-    @FXML
-    private TextField toTextField;
-    
-    @FXML
     private TextField Arrival;
 
     @FXML
@@ -213,22 +186,6 @@ public class Controller{
        }
 
    }
-   
-   @FXML
-   void addFlightInfo(ActionEvent event) {
-
-   }
-   
-   @FXML
-   void EditFlghtInfo(ActionEvent event) {
-
-   }
-   
-   @FXML
-   void DeleteFlight(ActionEvent event) {
-
-   }
-   
 
    @FXML
    void BackOneScene(ActionEvent event) {
