@@ -19,7 +19,6 @@ public class Airline {
 	public boolean bookSeat(Flight flight, String seatType, Passenger passenger) {
 		double final_price;
 		String ticketid;
-		System.out.println(flights);
 		for (Flight flighttocheck : flights) {
 	        if (flighttocheck == flight) {
 	        	if (flight.getEconomySeatsAvailable() > 0 || flight.getFirstClassSeatsAvailable() > 0) {

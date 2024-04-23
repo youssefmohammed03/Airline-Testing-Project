@@ -7,8 +7,12 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.ParameterizedTest;
 
 import GUIpackage.Airline;
 import GUIpackage.Flight;
@@ -27,18 +31,32 @@ class AirlineTest {
         testFlight = new Flight(airline.flights, 100, 50, "New York", "London", 200.0, 300.0, LocalTime.of(8, 0), LocalDate.of(2024, 4, 23), true, false);
         testPassenger = new Passenger("testUser", "testPassword", "Test Passenger", "ABC123", "test@example.com", "123456789", "123 Test St", LocalDate.of(1990, 1, 1), "Nationality", true);
     }
-
-    @Test
-    void testBookSeatEconomy() {
-    	//System.out.println(testFlight.)
-        assertTrue(airline.bookSeat(testFlight, "Economy", testPassenger));
-        assertEquals(99, testFlight.getEconomySeatsAvailable());
+    
+    @AfterEach
+    void tearDown() {
+        testFlight = new Flight(airline.flights, 100, 50, "New York", "London", 200.0, 300.0, LocalTime.of(8, 0), LocalDate.of(2024, 4, 23), true, false);
     }
 
-    @Test
+    @ParameterizedTest(name = "Test Book Seat: {0}")
+    @ValueSource(strings = {"Economy", "FirstClass"})
+    void testBookSeat(String input) {
+        System.out.println("Running test with flight: " + input);
+        assertTrue(airline.bookSeat(testFlight, input, testPassenger));
+    }
+    
+    @RepeatedTest(5)
+    void testBookSeatEconomyClass() {
+        int initialAvailableSeats = testFlight.getEconomySeatsAvailable();
+        System.out.println("Economy seats available = " + initialAvailableSeats);
+        airline.bookSeat(testFlight, "Economy", testPassenger);
+        assertEquals(initialAvailableSeats - 1, testFlight.getEconomySeatsAvailable());
+    }
+    
+    @RepeatedTest(5)
     void testBookSeatFirstClass() {
-        assertTrue(airline.bookSeat(testFlight, "FirstClass", testPassenger));
-        assertEquals(49, testFlight.getFirstClassSeatsAvailable());
+        int initialAvailableSeats = testFlight.getFirstClassSeatsAvailable();
+        airline.bookSeat(testFlight, "FirstClass", testPassenger);
+        assertEquals(initialAvailableSeats - 1, testFlight.getFirstClassSeatsAvailable());
     }
 
     @Test
