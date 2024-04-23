@@ -11,7 +11,7 @@ import java.util.List;
 import GUIpackage.Flight;
 import GUIpackage.Airline;;
 
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class AdminTest {
 
 	Airline airline = new Airline();
@@ -81,16 +81,13 @@ class AdminTest {
 	@Order(3)
 	void cancelFlightTest() {
 		String ID = airline.flights.get(2).getFlightId();
+		Flight flight = airline.flights.get(2);
 		airline.searchFlightById(ID);
-		assertNotNull(airline.flights.get(2));
-		System.out.println(airline.flights.get(2).toString());
+		assertNotNull(flight);
+		System.out.println(flight.toString());
 		airline.cancelFlight(ID);
-		assertNull(airline.flights.get(2));
-		
+		assertFalse(airline.flights.contains(flight));
+	
 		if( airline.flights.get(2) == null) System.out.println("Flight cancelled");
 	}
-	
-	
-	
-	
 }
