@@ -92,8 +92,11 @@ public class FlightsPageController {
         	alert.setTitle("Confirmation");
         	alert.setHeaderText(null);
         	alert.setContentText("Ticket confirmed!");
-        	
         	alert.showAndWait();
+                Parent previousSceneParent = FXMLLoader.load(getClass().getResource("TicketInfo.fxml"));
+                Scene previousScene = new Scene(previousSceneParent);
+                Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                window.setScene(previousScene);
         } else {
         	Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Failed");
@@ -108,7 +111,7 @@ public class FlightsPageController {
 
     @FXML
     public void initialize() {
-        // Set up columns
+        
         TableColumn<Flight, String> flightIdColumn = new TableColumn<>("Flight ID");
         flightIdColumn.setCellValueFactory(new PropertyValueFactory<>("flightId"));
 
@@ -123,6 +126,15 @@ public class FlightsPageController {
 
         TableColumn<Flight, LocalTime> timeColumn = new TableColumn<>("Time");
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+        
+        TableColumn<Flight, Double> economyPriceColumn = new TableColumn<>("Economy Price");
+        economyPriceColumn.setCellValueFactory(new PropertyValueFactory<>("economyPrice"));
+
+        TableColumn<Flight, Double> firstClassPriceColumn = new TableColumn<>("First Class Price");
+        firstClassPriceColumn.setCellValueFactory(new PropertyValueFactory<>("firstClassPrice"));
+        
+        flightTableView.getColumns().addAll(economyPriceColumn, firstClassPriceColumn);
+
         
         flightTableView.setMinSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
         flightTableView.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);

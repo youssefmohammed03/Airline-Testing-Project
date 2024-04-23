@@ -99,6 +99,27 @@ public class Controller{
     @FXML
     private DatePicker flightdatepicker;
 
+    @FXML
+    private Button cancelBtn;
+
+    @FXML
+    private Text flightLabel;
+
+    @FXML
+    private Text priceLabel;
+
+    @FXML
+    private Text seatTypeLabel;
+
+    @FXML
+    private Text ticketIdLabel;
+
+    @FXML
+    void CancelTicket(ActionEvent event) {
+
+    }
+
+
     
     @FXML
     void goBackToLogin(ActionEvent event) throws IOException{
@@ -115,26 +136,34 @@ public class Controller{
     }
     
     @FXML
-    void signup(ActionEvent event) throws IOException{
-    	boolean isCreated = this.a.signup(username.getText(), passwordTextField.getText(), name.getText(), passportnumber.getText(), emailTextField.getText(), phoneNumberTextField.getText(), address.getText(), dateofbirth.getValue(), nationality.getText(), true);
-    	if(isCreated) {
-    		try {
- 	           FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
- 	           Parent root = loader.load();
+    void signup(ActionEvent event) {
+        List<String> errors = validateSignupData();
 
- 	           Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        if (errors.isEmpty()) {
+            boolean isCreated = a.signup(username.getText(), passwordTextField.getText(), name.getText(),
+                    passportnumber.getText(), emailTextField.getText(), phoneNumberTextField.getText(),
+                    address.getText(), dateofbirth.getValue(), nationality.getText(), true);
+            if (isCreated) {
+                // Navigate to login page
+                navigateToLoginPage(event);
+            }
+        } else {
+            // Display validation errors in an alert
+            displayAlert("Validation Error", "Please correct the following errors:", String.join("\n", errors));
+        }
+    }
+    
+    private void navigateToLoginPage(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
+            Parent root = loader.load();
 
- 	           stage.getScene().setRoot(root);
- 	       } catch (IOException e) {
- 	           e.printStackTrace();
- 	       }
-    	} else {
-    		Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("User Already Exits");
-			alert.setHeaderText("This User Already Exits.");
-			if (alert.showAndWait().get() == ButtonType.OK){
-			}
-    	}
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
    @FXML
@@ -224,6 +253,76 @@ public class Controller{
 		   } 
 	   }
    }
+   
+   
+   private List<String> validateSignupData() {
+    List<String> errors = new ArrayList<>();
+
+    // Validate username
+    String usernameString = username.getText();
+    if (usernameString.isEmpty()) {
+        errors.add("Username field is empty.");
+    }
+
+    // Validate password
+    String passwordString = passwordTextField.getText();
+    if (passwordString.isEmpty() || passwordString.length() < 6) {
+        errors.add("Password must be at least 6 characters long.");
+    }
+
+    // Validate name
+    String nameString = name.getText();
+    if (nameString.isEmpty()) {
+        errors.add("Name field is empty.");
+    }
+
+    // Validate passport number
+    String passportNumberString = passportnumber.getText();
+    if (passportNumberString.isEmpty() || passportNumberString.length() != 8) {
+        errors.add("Passport number must be 8 characters long.");
+    }
+
+    // Validate email
+    String emailString = emailTextField.getText();
+    if (emailString.isEmpty() || !emailString.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+        errors.add("Invalid email format.");
+    }
+
+    // Validate phone number
+    String phoneNumberString = phoneNumberTextField.getText();
+    if (phoneNumberString.isEmpty() || !phoneNumberString.matches("\\d+")) {
+        errors.add("Phone number must contain only numbers.");
+    }
+
+    // Validate address
+    String addressString = address.getText();
+    if (addressString.isEmpty()) {
+        errors.add("Address field is empty.");
+    }
+
+    // Validate date of birth
+    LocalDate dob = dateofbirth.getValue();
+    if (dob == null) {
+        errors.add("Date of birth is not selected.");
+    }
+
+    // Validate nationality
+    String nationalityString = nationality.getText();
+    if (nationalityString.isEmpty()) {
+        errors.add("Nationality field is empty.");
+    }
+
+    return errors;
+}
+
+   
+   private void displayAlert(String title, String headerText, String contentText) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
 
 
 }

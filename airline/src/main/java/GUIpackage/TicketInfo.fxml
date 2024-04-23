@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIpackage.TicketInfoController">
+   <children>
+      <Pane prefHeight="145.0" prefWidth="900.0" style="-fx-background-color: #C4EAE4;">
+         <children>
+            <Text layoutX="297.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ticket Information">
+               <font>
+                  <Font size="38.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Text fx:id="Ticketidtext" layoutX="49.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ticket ID:" />
+      <Text fx:id="FlightText" layoutX="49.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flight:" />
+      <Text fx:id="seatTypeText" layoutX="49.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seat Type:" />
+      <Text fx:id="Pricetext" layoutX="49.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price:" />
+      <Text fx:id="ticketIdLabel" fill="#00000075" layoutX="150.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ticket id" wrappingWidth="233.0" />
+      <Text fx:id="flightLabel" fill="#00000075" layoutX="150.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="flight" wrappingWidth="275.0" />
+      <Text fx:id="seatTypeLabel" fill="#0000007a" fontSmoothingType="LCD" layoutX="150.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="seat type" wrappingWidth="275.0" />
+      <Text fx:id="priceLabel" fill="#0000006b" layoutX="150.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="price" wrappingWidth="247.0" />
+      <Button fx:id="cancelBtn" layoutX="65.0" layoutY="400.0" mnemonicParsing="false" onAction="#CancelTicket" text="Cancel Ticket" />
+   </children>
+</Pane>

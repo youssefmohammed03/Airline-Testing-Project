@@ -9,6 +9,9 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.collections.FXCollections;
@@ -18,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
@@ -146,15 +150,29 @@ public class AdminPanelController {
     }
 
     @FXML
-    void addFlightInfo(ActionEvent event) {
-    	String dateString = dateTextField.getText();
+void addFlightInfo(ActionEvent event) {
+    List<String> errors = validateData();
+
+    if (errors.isEmpty()) {
+        String dateString = dateTextField.getText();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
         String timeString = timeTextField.getText();
         DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
 
-    	a.createFlight(Integer.parseInt(economySeatsAvailable.getText()), Integer.parseInt(firstClassSeats.getText()), fromTextField.getText(), toTextField.getText(), Integer.parseInt(distance.getText()), LocalTime.parse(timeString, formatterTime), LocalDate.parse(dateString, formatter), highDemand.isSelected(), competitors.isSelected());
-    	initialize();
+        // Create the flight only if data is valid
+        a.createFlight(Integer.parseInt(economySeatsAvailable.getText()), Integer.parseInt(firstClassSeats.getText()), fromTextField.getText(), toTextField.getText(), Integer.parseInt(distance.getText()), LocalTime.parse(timeString, formatterTime), LocalDate.parse(dateString, formatter), highDemand.isSelected(), competitors.isSelected());
+        initialize(); // Refresh table or UI after adding the flight
+    } else {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Validation Error");
+        alert.setHeaderText("Please correct the following errors:");
+        alert.setContentText(String.join("\n", errors));
+
+        alert.showAndWait();
     }
+}
+
+
     
     public void initialize() {
     	
@@ -203,6 +221,92 @@ public class AdminPanelController {
  	       }
     }
     
-    
-    
+   public List<String> validateData() {
+    List<String> errors = new ArrayList<>();
+
+    // Validate date
+    String dateString = dateTextField.getText();
+    if (dateString.isEmpty()) {
+        errors.add("Date field is empty.");
+    } else {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        try {
+            LocalDate.parse(dateString, formatter);
+        } catch (DateTimeParseException e) {
+            errors.add("Invalid date format. Date should be in the format dd/MM/yyyy.");
+        }
+    }
+
+    // Validate time
+    String timeString = timeTextField.getText();
+    if (timeString.isEmpty()) {
+        errors.add("Time field is empty.");
+    } else {
+        DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
+        try {
+            LocalTime.parse(timeString, formatterTime);
+        } catch (DateTimeParseException e) {
+            errors.add("Invalid time format. Time should be in the format HH:mm.");
+        }
+    }
+
+    // Validate from and to fields
+    String fromString = fromTextField.getText();
+    String toString = toTextField.getText();
+    if (fromString.isEmpty()) {
+        errors.add("From field is empty.");
+    }
+    if (toString.isEmpty()) {
+        errors.add("To field is empty.");
+    }
+    if (fromString.equals(toString)) {
+        errors.add("From and To fields cannot be the same.");
+    }
+
+    // Validate distance
+    String distanceString = distance.getText();
+    if (distanceString.isEmpty()) {
+        errors.add("Distance field is empty.");
+    } else {
+        try {
+            Float.parseFloat(distanceString);
+        } catch (NumberFormatException e) {
+            errors.add("Invalid distance. Distance should be a valid number.");
+        }
+    }
+
+    // Validate economy seats
+    String economySeatsString = economySeatsAvailable.getText();
+    if (economySeatsString.isEmpty()) {
+        errors.add("Economy Seats field is empty.");
+    } else {
+        try {
+            Integer.parseInt(economySeatsString);
+        } catch (NumberFormatException e) {
+            errors.add("Invalid economy seats. Economy seats should be a valid integer.");
+        }
+    }
+
+    // Validate first class seats
+    String firstClassSeatsString = firstClassSeats.getText();
+    if (firstClassSeatsString.isEmpty()) {
+        errors.add("First Class Seats field is empty.");
+    } else {
+        try {
+            Integer.parseInt(firstClassSeatsString);
+        } catch (NumberFormatException e) {
+            errors.add("Invalid first class seats. First class seats should be a valid integer.");
+        }
+    }
+    return errors;
 }
+
+
+}
+    
+       
+    
+    
+    
+    
+

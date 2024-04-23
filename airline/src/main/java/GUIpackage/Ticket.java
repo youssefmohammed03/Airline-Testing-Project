@@ -7,7 +7,6 @@ public class Ticket {
     private String seatType;
     private double price;
 
-
     public Ticket(String ticketId, String seatType, double price) {
         this.ticketId = ticketId;
         this.seatType = seatType;

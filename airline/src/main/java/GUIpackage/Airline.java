@@ -14,12 +14,11 @@ public class Airline {
 	public Airline() {
 		admins.add(new Admin("admin1", "admin1"));
 		admins.add(new Admin("admin2", "admin2"));
-		admins.add(new Admin("admin3", "admin3"));        
+		admins.add(new Admin("admin3", "admin3"));    
 	}
 	public boolean bookSeat(Flight flight, String seatType, Passenger passenger) {
 		double final_price;
 		String ticketid;
-		System.out.println(flights);
 		for (Flight flighttocheck : flights) {
 	        if (flighttocheck == flight) {
 	        	if (flight.getEconomySeatsAvailable() > 0 || flight.getFirstClassSeatsAvailable() > 0) {
@@ -27,7 +26,7 @@ public class Airline {
 	                	ticketid = "e "+ Integer.toString(flight.getEconomySeatsAvailable());
 	                    flight.setEconomySeatsAvailable(flight.getEconomySeatsAvailable() - 1);
 	                    final_price = flight.getEconomyPrice();
-	                } else if (seatType.equalsIgnoreCase("FirstClass") && flight.getFirstClassSeatsAvailable() > 0) {
+	                } else if (seatType.equalsIgnoreCase("First Class") && flight.getFirstClassSeatsAvailable() > 0) {
 	                	ticketid = "fc "+ Integer.toString(flight.getFirstClassSeatsAvailable());
 	                	flight.setFirstClassSeatsAvailable(flight.getFirstClassSeatsAvailable() - 1);
 	                    final_price = flight.getFirstClassPrice();
@@ -36,6 +35,8 @@ public class Airline {
 	                    return false;
 	                }
 	                Ticket ticket = new Ticket(ticketid, seatType, final_price);
+	                ticket.setFlight(flight);
+	                ticket.setPassenger(passenger);
 	                passenger.setTicket(ticket);
 	                flight.addTicket(ticket);
 	                return true;
@@ -45,7 +46,6 @@ public class Airline {
 	            }
 	        }
 	    }
-		System.out.println("Outside the loop");
 		return false;
     }
 	
