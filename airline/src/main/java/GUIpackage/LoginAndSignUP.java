@@ -31,7 +31,7 @@ public class LoginAndSignUP extends Application {
         primaryStage.show();
         
          
-        primaryStage.getIcons().add(new Image("pngegg (1).png"));
+        primaryStage.getIcons().add(new Image("/pngegg (1).png"));
        primaryStage.setOnCloseRequest(event -> {
 				event.consume();
 				logout(primaryStage);	

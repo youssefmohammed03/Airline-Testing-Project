@@ -49,7 +49,7 @@
             </Label>
             <ImageView fitHeight="147.0" fitWidth="166.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/pngegg%20(1).png" />
+                  <Image url="@/pngegg (1).png" />
                </image>
             </ImageView>
          </children>
