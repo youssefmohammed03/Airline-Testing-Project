@@ -42,7 +42,7 @@ class AirlineTest {
     class FlightBookingTests {
         
         @ParameterizedTest(name = "Test Book Seat: {0}")
-        @ValueSource(strings = {"Economy", "FirstClass"})
+        @ValueSource(strings = {"Economy", "First Class"})
         void testBookSeat(String input) {
             System.out.println("Running test with flight: " + input);
             assertTrue(airline.bookSeat(testFlight, input, testPassenger));
@@ -59,7 +59,7 @@ class AirlineTest {
         @RepeatedTest(5)
         void testBookSeatFirstClass() {
             int initialAvailableSeats = testFlight.getFirstClassSeatsAvailable();
-            airline.bookSeat(testFlight, "FirstClass", testPassenger);
+            airline.bookSeat(testFlight, "First Class", testPassenger);
             assertEquals(initialAvailableSeats - 1, testFlight.getFirstClassSeatsAvailable());
         }
         @Test
@@ -67,6 +67,9 @@ class AirlineTest {
             // Fill up all seats
             for (int i = 0; i < 100; i++) {
                 airline.bookSeat(testFlight, "Economy", new Passenger("Passenger " + i, "pass" + i, "Passenger Name", "P" + i, "email@example.com", "123456789", "Address", LocalDate.of(1980, 1, 1), "Nationality", true));
+            }
+            for (int i = 0; i < 50; i++) {
+                airline.bookSeat(testFlight, "First Class", new Passenger("Passenger " + i, "pass" + i, "Passenger Name", "P" + i, "email@example.com", "123456789", "Address", LocalDate.of(1980, 1, 1), "Nationality", true));
             }
             assertFalse(airline.bookSeat(testFlight, "Economy", testPassenger));
             assertFalse(airline.bookSeat(testFlight, "First Class", testPassenger));

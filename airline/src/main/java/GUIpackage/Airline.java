@@ -26,7 +26,7 @@ public class Airline {
 	                	ticketid = "e "+ Integer.toString(flight.getEconomySeatsAvailable());
 	                    flight.setEconomySeatsAvailable(flight.getEconomySeatsAvailable() - 1);
 	                    final_price = flight.getEconomyPrice();
-	                } else if (seatType.equalsIgnoreCase("FirstClass") && flight.getFirstClassSeatsAvailable() > 0) {
+	                } else if (seatType.equalsIgnoreCase("First Class") && flight.getFirstClassSeatsAvailable() > 0) {
 	                	ticketid = "fc "+ Integer.toString(flight.getFirstClassSeatsAvailable());
 	                	flight.setFirstClassSeatsAvailable(flight.getFirstClassSeatsAvailable() - 1);
 	                    final_price = flight.getFirstClassPrice();
@@ -53,7 +53,7 @@ public class Airline {
 	        if (ticket != null) {
 	            if (ticket.getSeatType().equalsIgnoreCase("Economy")) {
 	                flight.setEconomySeatsAvailable(flight.getEconomySeatsAvailable() + 1);
-	            } else if (ticket.getSeatType().equalsIgnoreCase("FirstClass")) {
+	            } else if (ticket.getSeatType().equalsIgnoreCase("First Class")) {
 	                flight.setFirstClassSeatsAvailable(flight.getFirstClassSeatsAvailable() + 1);
 	            }
 	            passenger.setTicket(null); // Remove ticket reference from passenger
