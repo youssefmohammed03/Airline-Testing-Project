@@ -63,15 +63,6 @@ class FlightTest {
 		assertEquals(flights.get(4).getFlightId(), "10005");
 	}
 	
-	@Test
-	void testTicketsSettersGetters() {
-		List <Ticket> t = new ArrayList<>();
-		t.add(new Ticket("fc25", "First Class", 700));
-		t.add(new Ticket("e80", "Economy", 400));
-		flights.get(2).setTickets(t);
-		assertSame(t, flights.get(2).getTickets());
-	}
-	
 	@Nested
 	@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 	class TicketManipulation{
@@ -100,6 +91,86 @@ class FlightTest {
 			flights.get(0).removeTicket(ticketId);
 			assertTrue(flights.get(0).getTickets().size() == number);
 		}
+	}
+	
+	@Nested
+	class SettersAndGettersTesting{
+		@Test
+		void testTickets() {
+			List <Ticket> t = new ArrayList<>();
+			t.add(new Ticket("fc25", "First Class", 700));
+			t.add(new Ticket("e80", "Economy", 400));
+			flights.get(2).setTickets(t);
+			assertSame(t, flights.get(2).getTickets());
+		}
+		
+		@Test
+	    void testEconomySeatsAvailable() {
+	        flights.get(3).setEconomySeatsAvailable(200);
+	        assertEquals(200, flights.get(3).getEconomySeatsAvailable());
+	    }
+
+	    @Test
+	    void testFirstClassSeatsAvailable() {
+	        flights.get(3).setFirstClassSeatsAvailable(50);
+	        assertEquals(50, flights.get(3).getFirstClassSeatsAvailable());
+	    }
+
+	    @Test
+	    void testFrom() {
+	        flights.get(3).setFrom("Paris");
+	        assertEquals("Paris", flights.get(3).getFrom());
+	    }
+
+	    @Test
+	    void testTo() {
+	        flights.get(3).setTo("Dubai");
+	        assertEquals("Dubai", flights.get(3).getTo());
+	    }
+
+	    @Test
+	    void testEconomyPrice() {
+	        flights.get(3).setEconomyPrice(299.99);
+	        assertEquals(299.99, flights.get(3).getEconomyPrice());
+	    }
+
+	    @Test
+	    void testFirstClassPrice() {
+	        flights.get(3).setFirstClassPrice(1299.99);
+	        assertEquals(1299.99, flights.get(3).getFirstClassPrice());
+	    }
+
+	    @Test
+	    void testDate() {
+	        LocalDate testDate = LocalDate.of(2023, 12, 25);
+	        flights.get(3).setDate(testDate);
+	        assertEquals(testDate, flights.get(3).getDate());
+	    }
+
+	    @Test
+	    void testTime() {
+	        LocalTime testTime = LocalTime.of(15, 30);
+	        flights.get(3).setTime(testTime);
+	        assertEquals(testTime, flights.get(3).getTime());
+	    }
+
+	    @Test
+	    void testFlightId() {
+	        flights.get(3).setFlightId("FL123");
+	        assertEquals("FL123", flights.get(3).getFlightId());
+	    }
+
+	    @Test
+	    void testHighDemand() {
+	        flights.get(3).setHighDemand(true);
+	        assertTrue(flights.get(3).getHighDemand());
+	    }
+
+	    @Test
+	    void testCompetitors() {
+	        flights.get(3).setCompetitors(true);
+	        assertTrue(flights.get(3).getCompetitors());
+	    }
 	}
 
 }
