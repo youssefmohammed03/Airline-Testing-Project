@@ -44,6 +44,21 @@ public void searchIndexFlightByIdTest(){
 }
 
 @Test
+@Order(2)
+public void searchFlightByIdTest() {
+    
+    Flight flight = airline.searchFlightById("9999");
+    assertNull(flight);
+
+    // Test with existing flight IDs
+    assertEquals(airline.flights.get(0), airline.searchFlightById("10001"));
+    assertEquals(airline.flights.get(1), airline.searchFlightById("10002"));
+    assertNotEquals(airline.flights.get(3), airline.searchFlightById("10003"));
+}
+
+
+@Test
+@Order(3)
 void testSeacrhFlights() {
 	
     
