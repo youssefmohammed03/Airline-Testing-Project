@@ -17,22 +17,20 @@ public class Airline {
 		admins.add(new Admin("admin3", "admin3"));    
 	}
 	public boolean bookSeat(Flight flight, String seatType, Passenger passenger) {
-		double final_price;
-		String ticketid;
-		for (Flight flighttocheck : flights) {
+	    double final_price;
+	    String ticketid;
+	    for (Flight flighttocheck : flights) {
 	        if (flighttocheck == flight) {
-	        	if (flight.getEconomySeatsAvailable() > 0 || flight.getFirstClassSeatsAvailable() > 0) {
-	                if (seatType.equalsIgnoreCase("Economy") && flight.getEconomySeatsAvailable() > 0) {
-	                	ticketid = "e "+ Integer.toString(flight.getEconomySeatsAvailable());
+	            if ((seatType.equalsIgnoreCase("Economy") && flight.getEconomySeatsAvailable() > 0) ||
+	                (seatType.equalsIgnoreCase("First Class") && flight.getFirstClassSeatsAvailable() > 0)) {
+	                if (seatType.equalsIgnoreCase("Economy")) {
+	                    ticketid = "e " + flight.getEconomySeatsAvailable();
 	                    flight.setEconomySeatsAvailable(flight.getEconomySeatsAvailable() - 1);
 	                    final_price = flight.getEconomyPrice();
-	                } else if (seatType.equalsIgnoreCase("First Class") && flight.getFirstClassSeatsAvailable() > 0) {
-	                	ticketid = "fc "+ Integer.toString(flight.getFirstClassSeatsAvailable());
-	                	flight.setFirstClassSeatsAvailable(flight.getFirstClassSeatsAvailable() - 1);
-	                    final_price = flight.getFirstClassPrice();
 	                } else {
-	                    System.out.println("No available seats in the selected class.");
-	                    return false;
+	                    ticketid = "fc " + flight.getFirstClassSeatsAvailable();
+	                    flight.setFirstClassSeatsAvailable(flight.getFirstClassSeatsAvailable() - 1);
+	                    final_price = flight.getFirstClassPrice();
 	                }
 	                Ticket ticket = new Ticket(ticketid, seatType, final_price);
 	                ticket.setFlight(flight);
@@ -46,8 +44,9 @@ public class Airline {
 	            }
 	        }
 	    }
-		return false;
-    }
+	    return false;
+	}
+
 	
 	 public boolean cancelBooking(Ticket ticket, Flight flight, Passenger passenger) {
 	        if (ticket != null) {

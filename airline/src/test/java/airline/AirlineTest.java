@@ -30,6 +30,10 @@ class AirlineTest {
     void setUp() {
         airline = new Airline();
         testFlight = new Flight(airline.flights, 100, 50, "New York", "London", 200.0, 300.0, LocalTime.of(8, 0), LocalDate.of(2024, 4, 23), true, false);
+        airline.createFlight(250, 50, "Cairo", "Aswan", 900, LocalTime.of(14, 30), LocalDate.of(2024, 4, 20), true, false);
+		airline.createFlight(180, 30, "London", "New York", 7000, LocalTime.of(18, 45), LocalDate.of(2023, 4, 22), true, false);
+	    airline.createFlight(220, 45, "Paris", "Dubai", 6000, LocalTime.of(8, 15), LocalDate.of(2023, 4, 25), false, true);
+	    airline.createFlight(190, 35, "New York", "Tokyo", 11000, LocalTime.of(22, 30), LocalDate.of(2023, 4, 28), true, true);
         testPassenger = new Passenger("testUser", "testPassword", "Test Passenger", "ABC123", "test@example.com", "123456789", "123 Test St", LocalDate.of(1990, 1, 1), "Nationality", true);
     }
     
@@ -74,6 +78,13 @@ class AirlineTest {
             assertFalse(airline.bookSeat(testFlight, "Economy", testPassenger));
             assertFalse(airline.bookSeat(testFlight, "First Class", testPassenger));
         }
+        
+        @Test
+        void testNotAvailableFlight() {
+        	assertFalse(airline.bookSeat(null, null, testPassenger));
+        }
+        
+        
     }
     
     

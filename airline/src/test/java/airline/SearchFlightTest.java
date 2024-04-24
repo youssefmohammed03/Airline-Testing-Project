@@ -6,9 +6,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.TestMethodOrder;
 
 import GUIpackage.Flight;
 import GUIpackage.Ticket;
@@ -26,16 +23,16 @@ public class SearchFlightTest{
 	    airline.createFlight(190, 35, "New York", "Tokyo", 11000, LocalTime.of(22, 30), LocalDate.of(2023, 4, 28), true, true);
     }
 
-//    @AfterAll
-//    public static void tearDown(){
-//        for(Flight f : Airline.flights) {
-//        System.out.println(f.toString());
-//        }
-//
-//        for(int i = 0; i < Airline.flights.size(); i++) {
-//        Airline.flights.set(i, null);
-//        }
-//    }
+    @AfterAll
+    public static void tearDown(){
+        for(Flight f : Airline.flights) {
+        System.out.println(f.toString());
+        }
+
+        for(int i = 0; i < Airline.flights.size(); i++) {
+        Airline.flights.set(i, null);
+        }
+    }
 @Test 
 @Order(1)
 public void searchIndexFlightByIdTest(){
@@ -44,5 +41,21 @@ public void searchIndexFlightByIdTest(){
     assertEquals(0, airline.searchIndexFlightById("10001"));
     assertEquals(1, airline.searchIndexFlightById("10002"));
     assertFalse(airline.searchIndexFlightById("10003") == 3);
+}
+
+@Test
+void testSeacrhFlights() {
+	
+    
+    String from = "Cairo";
+    String to = "Aswan";
+    LocalDate date = LocalDate.of(2024, 4, 20);
+
+    // Perform the search
+    List<Flight> matchingFlights = airline.searchFlight(from, to, date);
+
+    // Validate the results
+    //assertEquals(1, matchingFlights.size());
+    assertEquals(airline.flights.get(0), matchingFlights.get(0));
 }
 }
