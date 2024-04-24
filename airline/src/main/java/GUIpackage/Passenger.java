@@ -119,7 +119,7 @@ public class Passenger {
     	return ticket;
     }
     
-    public void setDesiredFlightst(List<Flight> desiredFlights) {
+    public void setDesiredFlights(List<Flight> desiredFlights) {
     	this.desiredFlights = desiredFlights;
     }
     

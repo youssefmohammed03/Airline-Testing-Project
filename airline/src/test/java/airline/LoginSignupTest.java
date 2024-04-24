@@ -34,6 +34,7 @@ public class LoginSignupTest {
 
         for(int i = 0; i < airline.passengers.size(); i++) {
             airline.passengers.set(i, null);
+            airline.passengers.remove(i);
         }
     }
 
@@ -48,7 +49,7 @@ public class LoginSignupTest {
     @Order(2)
     public void logintest(){
     	assertEquals( -1, airline.login( "Ahmed24", "xx@xx"));
-       assertEquals( 1, airline.login( "JohnDoe", "JD@123")); 
+        assertEquals( 1, airline.login( "JohnDoe", "JD@123")); 
         assertEquals( 0, airline.login( "admin1", "admin1"));
         assertEquals( 1, airline.login( "NewUser", "NU@123")); 
     }

@@ -87,7 +87,7 @@ class AdminTest {
 		System.out.println(flight.toString());
 		airline.cancelFlight(ID);
 		assertFalse(airline.flights.contains(flight));
-	
+		
 		if( airline.flights.get(2) == null) System.out.println("Flight cancelled");
 	}
 }
