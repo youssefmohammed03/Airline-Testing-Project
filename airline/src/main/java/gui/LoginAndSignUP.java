@@ -28,6 +28,7 @@ public class LoginAndSignUP extends Application {
         
         primaryStage.setTitle("Airline Reservation System");
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
         
          
