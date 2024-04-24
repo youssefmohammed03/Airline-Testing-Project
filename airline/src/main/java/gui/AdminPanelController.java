@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package GUIpackage;
+package gui;
 
 import java.io.IOException;
 import java.net.URL;
@@ -13,6 +13,9 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import GUIpackage.Airline;
+import GUIpackage.Flight;
 import javafx.fxml.Initializable;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;

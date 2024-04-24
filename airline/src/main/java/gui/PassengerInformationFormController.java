@@ -1,4 +1,4 @@
-package GUIpackage;
+package gui;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;

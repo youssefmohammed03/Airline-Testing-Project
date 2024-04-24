@@ -1,4 +1,4 @@
-package GUIpackage;
+package gui;
 
 import java.awt.Label;
 import java.io.IOException;
@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import GUIpackage.Airline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
