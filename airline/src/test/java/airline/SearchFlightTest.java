@@ -26,16 +26,16 @@ public class SearchFlightTest{
 	    airline.createFlight(190, 35, "New York", "Tokyo", 11000, LocalTime.of(22, 30), LocalDate.of(2023, 4, 28), true, true);
     }
 
-    @AfterAll
-    public static void tearDown(){
-        for(Flight f : airline.flights) {
-        System.out.println(f.toString());
-        }
-
-        for(int i = 0; i < airline.flights.size(); i++) {
-        airline.flights.set(i, null);
-        }
-    }
+//    @AfterAll
+//    public static void tearDown(){
+//        for(Flight f : Airline.flights) {
+//        System.out.println(f.toString());
+//        }
+//
+//        for(int i = 0; i < Airline.flights.size(); i++) {
+//        Airline.flights.set(i, null);
+//        }
+//    }
 @Test 
 @Order(1)
 public void searchIndexFlightByIdTest(){
