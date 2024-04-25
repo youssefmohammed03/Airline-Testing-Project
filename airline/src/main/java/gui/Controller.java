@@ -233,7 +233,7 @@ public class Controller{
 
    @FXML
    void GoToFlightsPage(ActionEvent event) {
-	   Airline.p.setDesiredFlightst(this.a.searchFlight(Departure.getText(), Arrival.getText(), flightdatepicker.getValue()));
+	   Airline.p.setDesiredFlights(this.a.searchFlight(Departure.getText(), Arrival.getText(), flightdatepicker.getValue()));
 	   if(Airline.p.getDesiredFlights().isEmpty()) {
 		   Alert alert = new Alert(Alert.AlertType.INFORMATION);
            alert.setTitle("Failed");
