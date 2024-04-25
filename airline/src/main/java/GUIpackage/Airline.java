@@ -17,53 +17,93 @@ public class Airline {
 		admins.add(new Admin("admin3", "admin3"));    
 	}
 	public boolean bookSeat(Flight flight, String seatType, Passenger passenger) {
-	    double final_price;
-	    String ticketid;
-	    for (Flight flighttocheck : flights) {
-	        if (flighttocheck == flight) {
-	            if ((seatType.equalsIgnoreCase("Economy") && flight.getEconomySeatsAvailable() > 0) ||
-	                (seatType.equalsIgnoreCase("First Class") && flight.getFirstClassSeatsAvailable() > 0)) {
-	                if (seatType.equalsIgnoreCase("Economy")) {
-	                    ticketid = "e " + flight.getEconomySeatsAvailable();
-	                    flight.setEconomySeatsAvailable(flight.getEconomySeatsAvailable() - 1);
-	                    final_price = flight.getEconomyPrice();
-	                } else {
-	                    ticketid = "fc " + flight.getFirstClassSeatsAvailable();
-	                    flight.setFirstClassSeatsAvailable(flight.getFirstClassSeatsAvailable() - 1);
-	                    final_price = flight.getFirstClassPrice();
-	                }
-	                Ticket ticket = new Ticket(ticketid, seatType, final_price);
-	                ticket.setFlight(flight);
-	                ticket.setPassenger(passenger);
-	                passenger.setTicket(ticket);
-	                flight.addTicket(ticket);
-	                return true;
-	            } else {
-	                System.out.println("Sorry, no seats available for this flight.");
-	                return false;
-	            }
-	        }
-	    }
-	    return false;
+		// Instruction 1
+		double final_price;
+
+		// Instruction 2
+		String ticketid;
+
+		// Instruction 3
+		for (Flight flighttocheck : flights) {
+
+		    // Instruction 4
+		    if (flighttocheck == flight) {
+
+		        // Instruction 5
+		        if ((seatType.equalsIgnoreCase("Economy") && flight.getEconomySeatsAvailable() > 0) ||
+		            (seatType.equalsIgnoreCase("First Class") && flight.getFirstClassSeatsAvailable() > 0)) {
+
+		            // Instruction 6
+		            if (seatType.equalsIgnoreCase("Economy")) {
+		                ticketid = "e " + flight.getEconomySeatsAvailable();
+		                // Instruction 7
+		                flight.setEconomySeatsAvailable(flight.getEconomySeatsAvailable() - 1);
+		                // Instruction 8
+		                final_price = flight.getEconomyPrice();
+		            } else {
+		                // Instruction 9
+		                ticketid = "fc " + flight.getFirstClassSeatsAvailable();
+		                // Instruction 10
+		                flight.setFirstClassSeatsAvailable(flight.getFirstClassSeatsAvailable() - 1);
+		                // Instruction 11
+		                final_price = flight.getFirstClassPrice();
+		            }
+
+		            // Instruction 12
+		            Ticket ticket = new Ticket(ticketid, seatType, final_price);
+		            // Instruction 13
+		            ticket.setFlight(flight);
+		            // Instruction 14
+		            ticket.setPassenger(passenger);
+		            // Instruction 15
+		            passenger.setTicket(ticket);
+		            // Instruction 16
+		            flight.addTicket(ticket);
+		            // Instruction 17
+		            return true;	
+		        } else {
+		            // Instruction 18
+		            System.out.println("Sorry, no seats available for this flight.");
+		            // Instruction 19
+		            return false;
+		        }
+		    }
+		}
+
+		// Instruction 20
+		return false;
 	}
+	
+
 
 	
-	 public boolean cancelBooking(Ticket ticket, Flight flight, Passenger passenger) {
-	        if (ticket != null) {
-	            if (ticket.getSeatType().equalsIgnoreCase("Economy")) {
-	                flight.setEconomySeatsAvailable(flight.getEconomySeatsAvailable() + 1);
-	            } else if (ticket.getSeatType().equalsIgnoreCase("First Class")) {
-	                flight.setFirstClassSeatsAvailable(flight.getFirstClassSeatsAvailable() + 1);
-	            }
-	            passenger.setTicket(null); // Remove ticket reference from passenger
-	            flight.removeTicket(ticket.getTicketId());
-	            ticket = null; // Delete the ticket object
-	            return true;
-	        } else {
-	            System.out.println("No booking found for this passenger.");
-	            return false;
+	public boolean cancelBooking(Ticket ticket, Flight flight, Passenger passenger) {
+	    // Instruction 1
+	    if (ticket != null) {
+	        // Instruction 2
+	        if (ticket.getSeatType().equalsIgnoreCase("Economy")) {
+	            // Instruction 3
+	            flight.setEconomySeatsAvailable(flight.getEconomySeatsAvailable() + 1);
+	          //Instruction 4  
+	        } else if (ticket.getSeatType().equalsIgnoreCase("First Class")) {
+	            // Instruction 5
+	            flight.setFirstClassSeatsAvailable(flight.getFirstClassSeatsAvailable() + 1);
 	        }
+	        // Instruction 6
+	        passenger.setTicket(null); // Remove ticket reference from passenger
+	        // Instruction 7
+	        flight.removeTicket(ticket.getTicketId());
+	        // Instruction 8
+	        ticket = null; // Delete the ticket object
+	        // Instruction 9
+	        return true;
+	    } else {
+	        // Instruction 10
+	        System.out.println("No booking found for this passenger.");
+	        // Instruction 11
+	        return false;
 	    }
+	}
 	
 	
 	public List<Flight> searchFlight(String from, String to, LocalDate date) {

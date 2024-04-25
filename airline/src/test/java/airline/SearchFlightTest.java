@@ -25,13 +25,10 @@ public class SearchFlightTest{
 
     @AfterAll
     public static void tearDown(){
-        for(Flight f : Airline.flights) {
-        System.out.println(f.toString());
-        }
+      
 
-        for(int i = 0; i < Airline.flights.size(); i++) {
-        Airline.flights.set(i, null);
-        }
+            Airline.flights.clear();
+        
     }
 @Test 
 @Order(1)
