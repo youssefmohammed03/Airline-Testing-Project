@@ -13,9 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
-    <stylesheets>
-        <URL value="@loginpage.css" />
-    </stylesheets>
+
    <children>
       <HBox layoutX="154.0" layoutY="363.0" prefHeight="100.0" prefWidth="592.0">
          <children>
